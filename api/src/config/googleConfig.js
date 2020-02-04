@@ -36,15 +36,14 @@ const urlGoogle = () => {
   return url
 }
 
-// async function getTokens() {
-//   const auth = createConnection();
-//   let code = '';
-//   const tokens = await auth.getToken(code)
-//   console.log(tokens);
-// }
+ const getTokens = async (code) => {
+  const auth = createConnection();
+  const tokens = await auth.getToken(code)
+  console.log(tokens);
+}
 
 module.exports = {
   urlGoogle,
-  // getTokens
+  getTokens
 }
 

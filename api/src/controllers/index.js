@@ -1,5 +1,6 @@
-const { googleLogin } = require('./google');
+const { googleLogin, googleTokens } = require('./google');
 
 module.exports = {
-  googleLogin
+  googleLogin,
+  googleTokens,
 }

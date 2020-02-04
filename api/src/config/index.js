@@ -1,7 +1,8 @@
 const { app } = require('./appConfig');
-const { urlGoogle } = require('./googleConfig');
+const { urlGoogle, getTokens } = require('./googleConfig');
 
 module.exports = {
   app,
   urlGoogle,
+  getTokens,
 }
