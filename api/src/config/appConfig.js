@@ -1,6 +1,7 @@
 const { root } = require('../constants');
 const { router } = require('../routes');
 const { mongooseConnect } = require('../resources')
+const cors = require('cors')
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,7 +11,7 @@ const mongoose = require('mongoose');
 mongooseConnect();
 
 const app = express();
-
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
