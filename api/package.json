@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "googleapis": "^47.0.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.10"
   }
 }
