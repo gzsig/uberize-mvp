@@ -3,13 +3,14 @@ import server from '../resources/axios';
 import queryString from 'query-string';
 
 class Loader extends Component {
-
+  constructor(props){
+    super(props)
+  }
   componentDidMount() {
     const query = queryString.parse(this.props.location.search)
-    console.log(query);
-      server.post('/auth', {
-        code: query.code
-      })
+    server.post('/auth', {
+      code: query.code
+    })
   }
   render() {
     return (

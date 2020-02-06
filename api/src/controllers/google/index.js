@@ -1,7 +1,7 @@
-const { googleLogin } = require('./login');
-const { googleTokens } = require('./tokens')
+const { googlePermission } = require('./googlePermission');
+const { validateUser } = require('./validateUser')
 
 module.exports = {
-  googleLogin,
-  googleTokens,
+  googlePermission,
+  validateUser,
 }

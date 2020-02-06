@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { googleLogin, googleTokens } = require('../controllers')
+const { googlePermission, validateUser } = require('../controllers')
 
 
 router.get('/', (req, res, next) => {
   res.send('welcome to my API')
 })
 
-router.get('/auth', googleLogin)
-router.post('/auth', googleTokens)
+router.get('/auth', googlePermission)
+router.post('/auth', validateUser)
 
 module.exports = {
   router,
