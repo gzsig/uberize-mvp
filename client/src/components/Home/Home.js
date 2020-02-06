@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import server from '../resources/axios';
+import Navbar from '../Navbar/Navbar'
+import server from '../../resources/axios';
 
 class Home extends Component {
   handleClick = (event) => {
@@ -15,6 +16,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         Home
         <button onClick={this.handleClick}>login</button>
       </div>

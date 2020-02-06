@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Loader from './components/Loader';
-import Home from './components/Home';
+import {Home, Loader} from './components';
 
 function App() {
   return (
