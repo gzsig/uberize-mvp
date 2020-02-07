@@ -13,6 +13,7 @@ function mongooseConnect() {
   .catch((err) => {
     console.error('An error accured while trying to connect to DB', err)
   })
+  return mongoose
 }
 
 module.exports = {

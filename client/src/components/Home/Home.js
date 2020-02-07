@@ -4,10 +4,10 @@ import server from '../../resources/axios';
 
 class Home extends Component {
   handleClick = (event) => {
-    server.get('/auth')
+    server.get('/auth/google', { headers: { 'Access-Control-Allow-Origin': '*' } })
       .then(res => {
         console.log(res.data);
-        window.location.assign(res.data)
+        // window.location.assign(res.data)
       })
       .catch(err => {
         console.log(err);
