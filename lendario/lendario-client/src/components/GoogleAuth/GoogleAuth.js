@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import queryString from "query-string";
+import { GoogleBtn, SvgIcon } from './style';
 
 class GoogleAuth extends Component {
   componentDidMount() {
@@ -11,11 +12,11 @@ class GoogleAuth extends Component {
   }
   render() {
     return (
-      <a href="http://localhost:3001/auth/google" className="button">
+      <GoogleBtn onClick={() => { console.log("ola") }}>
+        {/* <a href="http://localhost:3001/auth/google" className="button"> */}
         <div>
-          <span className="svgIcon t-popup-svg">
+          <SvgIcon>
             <svg
-              className="svgIcon-use"
               width="25"
               height="37"
               viewBox="0 0 25 25"
@@ -39,10 +40,11 @@ class GoogleAuth extends Component {
                 />
               </g>
             </svg>
-          </span>
+          </SvgIcon>
           <span className="button-label">Sign in with Google</span>
         </div>
-      </a>
+        {/* </a> */}
+      </GoogleBtn>
     )
   }
 }

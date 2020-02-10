@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import GoogleAuth from './components/GoogleAuth';
+import { GoogleAuth } from './components';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
