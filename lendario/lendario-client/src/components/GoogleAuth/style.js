@@ -1,16 +1,14 @@
 import styled from 'styled-components';
 
-const GoogleBtn = styled.a `
+const LoginCard = styled.div `
 -webkit-tap-highlight-color: transparent;
-text-decoration: none;
-display: inline-block;
-max-width: 300px;
-margin-top: 50px;
+display: flex;
+justify-content: center;
+align-items: centerl;
+width: 300px;
+margin: 50px auto;
 border: 0;
-padding: 0 18px;
-text-align: left;
-width: 100%;
-height: 37px;
+height: 300px;
 border-radius: 4px;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -22,6 +20,12 @@ font: inherit;
 outline: none;
 `
 
+const GoogleBtn = styled.a`
+height: fit-content;
+margin: auto;
+cursor: pointer;
+`
+
 const SvgIcon = styled.span`
 vertical-align: middle;
 fill: rgba(0, 0, 0, 0.54);
@@ -30,4 +34,4 @@ height: 37px;
 display: inline-block;
 `
 
-export {GoogleBtn, SvgIcon}
+export {GoogleBtn, LoginCard, SvgIcon}

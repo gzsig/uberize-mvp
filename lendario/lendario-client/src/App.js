@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import { GoogleAuth } from './components';
 import { Switch, Route } from 'react-router-dom';
+import { Navbar, GoogleAuth } from './components';
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Switch>
         <Route path="/" component={GoogleAuth} />
       </Switch>
