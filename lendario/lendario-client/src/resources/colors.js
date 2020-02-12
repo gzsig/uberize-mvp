@@ -1,3 +1,6 @@
-const primary = '#DD4B39'
+const primary = '#D55F8F'
+const secondary = '#333745'
+const offWhite = '#EEEBE8'
+const beige = '#D5CCCC'
 
-export { primary }
+export { beige, offWhite, primary, secondary }
