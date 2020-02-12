@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import queryString from "query-string";
-import { GoogleBtn, LoginCard, SvgIcon } from './style';
+import * as S from './style';
 import server from '../../resources/axios';
 
 class GoogleAuth extends Component {
   componentDidMount() {
-    const query = queryString.parse(this.props.location.search);
+    const query = queryString.parse(this.props.search);
     if (query.token) {
       window.localStorage.setItem("jwt", query.token);
       this.props.history.push("/");
@@ -27,9 +27,12 @@ class GoogleAuth extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoginCard>
-          <GoogleBtn onClick={this.handleLogInClick}>
-            <SvgIcon>
+        <S.LoginCard>
+        <S.Welcome>
+        Bem Vindo
+        </S.Welcome>
+          <S.GoogleBtn onClick={this.handleLogInClick}>
+            <S.SvgIcon>
               <svg
                 width="25"
                 height="37"
@@ -54,11 +57,12 @@ class GoogleAuth extends Component {
                   />
                 </g>
               </svg>
-            </SvgIcon>
-            <span className="button-label">Sign in with Google</span>
-          </GoogleBtn>
-        </LoginCard>
-        <div onClick={this.testCalClick}>click me</div>
+            </S.SvgIcon>
+            <span className="button-label">Login com Google</span>
+          </S.GoogleBtn>
+          <S.Footer>Não tem gmail? Sem problemas, <a href='https://gmail.com' target='_blank'>crie</a> um agora!</S.Footer>
+        </S.LoginCard>
+        {/* <div onClick={this.testCalClick}>click me</div> */}
       </React.Fragment>
     )
   }
