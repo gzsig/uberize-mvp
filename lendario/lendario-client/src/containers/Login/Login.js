@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { GoogleAuth } from "../../components";
-import { Wrapper } from "./style"; 
+import { Wrapper } from "./style";
 
 class Login extends Component {
 
-  render(){
-    return(
+  render() {
+    return (
       <Wrapper>
-      <GoogleAuth search={this.props.location.search} />
+        <GoogleAuth router={this.props} />
       </Wrapper>
     )
   }

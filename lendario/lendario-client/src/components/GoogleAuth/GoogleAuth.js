@@ -5,10 +5,10 @@ import server from '../../resources/axios';
 
 class GoogleAuth extends Component {
   componentDidMount() {
-    const query = queryString.parse(this.props.search);
+    const query = queryString.parse(this.props.router.location.search);
     if (query.token) {
       window.localStorage.setItem("jwt", query.token);
-      this.props.history.push("/");
+      this.props.router.history.push("/");
     }
   }
   handleLogInClick = () => {
@@ -62,7 +62,7 @@ class GoogleAuth extends Component {
           </S.GoogleBtn>
           <S.Footer>Não tem gmail? Sem problemas, <a href='https://gmail.com' target='_blank'>crie</a> um agora!</S.Footer>
         </S.LoginCard>
-        {/* <div onClick={this.testCalClick}>click me</div> */}
+        <div onClick={this.testCalClick}>click me</div>
       </React.Fragment>
     )
   }
