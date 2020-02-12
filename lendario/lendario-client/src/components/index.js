@@ -1,5 +1,5 @@
 import GoogleAuth from "./GoogleAuth";
 import Navbar from './Navbar'
+import CreateAccount from './CreateAccount'
 
-
-export { GoogleAuth, Navbar }
+export { CreateAccount, GoogleAuth, Navbar }
