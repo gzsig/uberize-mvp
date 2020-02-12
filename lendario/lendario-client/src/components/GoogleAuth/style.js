@@ -1,18 +1,19 @@
 import styled from 'styled-components';
+import * as colors from '../../resources/colors'
 
 const Footer = styled.span`
   position: absolute;
   top: 85%;
   width: 250px;
+  color: ${colors.secondary};
   a {
+    color: ${colors.primary};
     text-decoration: none;
-    color: #DD4B39;
     font-weight: bold;
   }
 `
 
 const LoginCard = styled.div `
--webkit-tap-highlight-color: transparent;
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
@@ -25,8 +26,7 @@ border-radius: 4px;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 -moz-font-feature-settings: "liga" on;
-color: rgba(0, 0, 0, 0.84) !important;
-fill: rgba(0, 0, 0, 0.84) !important;
+background-color: ${colors.beige};
 box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
 font: inherit;
 outline: none;
@@ -37,7 +37,7 @@ const GoogleBtn = styled.a`
 height: fit-content;
 width: fit-content;
 cursor: pointer;
-background-color: #EFEFEF;
+background-color: ${colors.offWhite};
 padding: 4px 8px;
 border-radius: 4px;
 color: #2E2E2E;
@@ -47,7 +47,7 @@ font-weight: bold;
 
 const Welcome = styled.span`
 text-align:center;
-color: #DD4B39;
+color: ${colors.secondary};
 font-size: 1.5rem;
 `
 

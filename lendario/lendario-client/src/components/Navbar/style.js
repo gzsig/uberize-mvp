@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+import * as colors from '../../resources/colors'
 
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
-  color: #DD4B39;
+  color: ${colors.secondary};
   `;
   
   const Item = styled.ul`
-  color: #DD4B39;
+  color: ${colors.secondary};
 `;
 
 const Items = styled.ul`
@@ -19,7 +20,7 @@ const Items = styled.ul`
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  background-color: #2D2D2D;
+  background-color: ${colors.primary};
   padding: 0 20%;
   box-shadow: 0 0 8px rgba(0, 0, 0, .5);
   height: 68px;
