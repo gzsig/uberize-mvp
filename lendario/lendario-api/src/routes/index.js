@@ -43,20 +43,25 @@ router.post('/google/cal', (req, res) => {
   console.log("hereeee:", token);
   const google_calendar = new gcal.GoogleCalendar(token);
 
-  google_calendar.events.list('primary', (err, events) => {
+  google_calendar.events.list('primary', {
+    timeMin: (new Date()).toISOString(),
+    maxResults: 10,
+    singleEvents: true,
+    orderBy: 'startTime',
+  }, (err, events) => {
     // events.items.filter(event => {
     //   if(new Date(event.start.dateTime) >= new Date()){
     //     return event
     //   }
     // })
-// let result = []
-//     for (let i = 0; i < events.items.length; i++) {
-//       if (new Date(event.items[i].start.dateTime) >= new Date()) {
-//         result.push( event)
-//       }
+    // let result = []
+    //     for (let i = 0; i < events.items.length; i++) {
+    //       if (new Date(event.items[i].start.dateTime) >= new Date()) {
+    //         result.push( event)
+    //       }
     // }
 
-    console.log("events ----->", events.items.length);
+    console.log("events ----->", events.items);
   });
   res.status(200).end
 })
