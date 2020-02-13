@@ -5,9 +5,9 @@ const Footer = styled.span`
   position: absolute;
   top: 85%;
   width: 250px;
-  color: ${colors.secondary};
+  color: ${colors.primary};
   a {
-    color: ${colors.primary};
+    color: ${colors.secondary};
     text-decoration: none;
     font-weight: bold;
   }

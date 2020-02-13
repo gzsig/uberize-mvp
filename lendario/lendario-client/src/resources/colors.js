@@ -1,5 +1,5 @@
-const primary = '#D55F8F'
-const secondary = '#333745'
+const primary = '#333745'
+const secondary = '#D55F8F'
 const offWhite = '#EEEBE8'
 const beige = '#D5CCCC'
 
