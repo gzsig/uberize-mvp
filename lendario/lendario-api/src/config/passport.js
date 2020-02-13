@@ -16,10 +16,14 @@ passport.use(
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:3001/auth/google/callback",
-      passReqToCallback   : true
+      passReqToCallback: true,
     },
-    function (req , accessToken, refreshToken, profile, done) {
-      const {_json} = profile
+    function (req, accessToken, refreshToken, profile, done) {
+      // console.log('req', req)
+      // console.log('accessToken', accessToken)
+      // console.log('refreshToken', refreshToken)
+      // console.log('profile', profile)
+      const { _json } = profile
       const {
         given_name,
         family_name,
@@ -31,9 +35,16 @@ passport.use(
         family_name,
         picture,
         email,
-        token: accessToken
+        accessToken,
+        refreshToken
       };
+
       done(null, userData);
     }
   )
 );
+
+
+module.exports = {
+  passport
+}
