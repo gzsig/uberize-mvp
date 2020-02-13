@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-
 const gcal = require('google-calendar');
+let jwt = require('jsonwebtoken');
+const { User } = require('../models')
 
 const defaultScope = [
   'https://www.googleapis.com/auth/userinfo.profile',
   'https://www.googleapis.com/auth/userinfo.email',
   'https://www.googleapis.com/auth/calendar',
 ];
+
 
 router.get('/',
   passport.authenticate('google', { scope: defaultScope, failureRedirect: '/frown' }),
@@ -31,36 +33,54 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/", session: false }),
   (req, res) => {
-    const token = req.user.token;
-    console.log("user: ", req.user);
+    const { email, picture, given_name, family_name, accessToken, refreshToken } = req.user
+    User.findOne({ email })
+      .then(existingUser => {
+        if (existingUser) {
+          const id = existingUser._id.toString();
+          const token = jwt.sign({ userId: id, accessToken },
+            process.env.JWT_SECRET_KEY,
+            { expiresIn: '356d' }
+          );
+          console.log("existooo");
 
-    res.redirect("http://localhost:3000?token=" + token);
+          res.redirect(`http://localhost:3000?token=${token}`);
+        } else {
+          User.create({
+            email,
+            picture,
+            given_name,
+            family_name,
+            accessToken,
+            refreshToken,
+          })
+            .then(newUser => {
+              const id = newUser._id.toString();
+              const token = jwt.sign({ userId: id, accessToken },
+                process.env.JWT_SECRET_KEY,
+                { expiresIn: '356d' }
+              );
+              console.log("naooooo existooo");
+              res.redirect(`http://localhost:3000?token=${token}`);
+            })
+            .catch(err => {
+              console.log('error regestering user: ', err);
+              res.redirect(`http://localhost:3000?err=${err}`);
+            })
+        }
+      })
   }
 );
 
 router.post('/google/cal', (req, res) => {
   const { token } = req.body;
-  console.log("hereeee:", token);
-  const google_calendar = new gcal.GoogleCalendar(token);
-
+  const google_calendar = new gcal.GoogleCalendar(accessToken);
   google_calendar.events.list('primary', {
     timeMin: (new Date()).toISOString(),
     maxResults: 10,
     singleEvents: true,
     orderBy: 'startTime',
   }, (err, events) => {
-    // events.items.filter(event => {
-    //   if(new Date(event.start.dateTime) >= new Date()){
-    //     return event
-    //   }
-    // })
-    // let result = []
-    //     for (let i = 0; i < events.items.length; i++) {
-    //       if (new Date(event.items[i].start.dateTime) >= new Date()) {
-    //         result.push( event)
-    //       }
-    // }
-
     console.log("events ----->", events.items);
   });
   res.status(200).end
