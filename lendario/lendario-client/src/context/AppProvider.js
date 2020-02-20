@@ -4,11 +4,11 @@ import server from '../resources/axios';
 
 class AppProvider extends Component {
   state = {
-    loggedIn: false,
+    loggedIn: 0,
     email: '',
     picture: '',
     given_name: '',
-    family_name: '',
+    family_name: ''
   };
 
   validateUser = () => {
@@ -19,15 +19,24 @@ class AppProvider extends Component {
         console.log('res', res);
         if (res.data.valid) {
           this.setState({
-            loggedIn: true,
+            loggedIn: 2,
             email: res.data.email,
             picture: res.data.picture,
             given_name: res.data.given_name,
             family_name: res.data.family_name
           });
+        } else {
+          this.setState({
+            loggedIn: 1
+          });
         }
       })
-      .catch(err => console.log('err', err.message));
+      .catch(err => {
+        console.log('err', err.message);
+        this.setState({
+          loggedIn: 1
+        });
+      });
   };
 
   updateState = state => {
