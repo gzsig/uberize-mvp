@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const gcal = require('google-calendar');
+const axios = require('axios');
 // let jwt = require('jsonwebtoken');
 // const { User } = require('../models');
-const { singinSignup } = require('../controllers');
+const { singinSignup, clientRefresh } = require('../controllers');
 const { authMiddleware } = require('../resources');
+const { User } = require('../models');
 
 const defaultScope = [
   'https://www.googleapis.com/auth/userinfo.profile',
@@ -27,6 +29,8 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/', session: false }),
   singinSignup
 );
+
+router.post('/refresh', authMiddleware, clientRefresh);
 
 router.get('/google/cal', authMiddleware, (req, res) => {
   console.log('decoded:', req.decoded);
