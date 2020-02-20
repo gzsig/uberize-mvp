@@ -1,5 +1,6 @@
 import GoogleAuth from "./GoogleAuth";
 import Navbar from './Navbar'
 import CreateAccount from './CreateAccount'
+import Loader from './Loader'
 
-export { CreateAccount, GoogleAuth, Navbar }
+export { Loader, CreateAccount, GoogleAuth, Navbar }
