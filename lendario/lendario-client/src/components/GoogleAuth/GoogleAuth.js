@@ -4,19 +4,20 @@ import * as S from './style';
 import server from '../../resources/axios';
 import Consumer from '../../context/AppConsumer';
 import appContext from '../../context/AppContext';
+import Loader from '../Loader';
 
 class GoogleAuth extends Component {
-  componentWillMount() {
-    this.context.validateUser();
-  }
-  componentDidMount() {
-    const query = queryString.parse(this.props.router.location.search);
-    if (query.token) {
-      window.localStorage.setItem('crpt', query.token);
-      this.props.router.history.push('/');
-      this.context.updateState({ loggedIn: true });
-    }
-  }
+  // componentWillMount() {
+  //   this.context.validateUser();
+  // }
+  // componentDidMount() {
+  //   const query = queryString.parse(this.props.router.location.search);
+  //   if (query.token) {
+  //     window.localStorage.setItem('crpt', query.token);
+  //     this.props.router.history.push('/');
+  //     this.context.updateState({ loggedIn: 2 });
+  //   }
+  // }
   handleLogInClick = () => {
     // server.get('/auth/google')
     window.location.assign('http://localhost:3001/auth/google');
@@ -43,11 +44,11 @@ class GoogleAuth extends Component {
   render() {
     return (
       <React.Fragment>
-        <Consumer>
+        {/* <Consumer>
           {context => {
-            return <div>{context.state.loggedIn ? 'true' : 'false'}</div>;
+            return <div>{context.state.loggedIn === 0 ? <Loader /> : `${context.state.loggedIn}` }</div>;
           }}
-        </Consumer>
+        </Consumer> */}
         <S.LoginCard>
           <S.Welcome>Bem Vindo</S.Welcome>
           <S.GoogleBtn onClick={this.handleLogInClick}>
