@@ -2,13 +2,19 @@ import React, { Component, Fragment } from 'react';
 import queryString from 'query-string';
 import * as S from './style';
 import server from '../../resources/axios';
+import Consumer from '../../context/AppConsumer';
+import appContext from '../../context/AppContext';
 
 class GoogleAuth extends Component {
+  componentWillMount() {
+    this.context.validateUser();
+  }
   componentDidMount() {
     const query = queryString.parse(this.props.router.location.search);
     if (query.token) {
       window.localStorage.setItem('crpt', query.token);
       this.props.router.history.push('/');
+      this.context.updateState({ loggedIn: true });
     }
   }
   handleLogInClick = () => {
@@ -17,7 +23,9 @@ class GoogleAuth extends Component {
   };
 
   testCalClick = () => {
-    console.log('estou aqui click');
+    // console.log('estou aqui click');
+    // console.log(this.context.state);
+    
     server
       .get('/google/cal')
       .then(res => {
@@ -35,6 +43,11 @@ class GoogleAuth extends Component {
   render() {
     return (
       <React.Fragment>
+        <Consumer>
+          {context => {
+            return <div>{context.state.loggedIn ? 'true' : 'false'}</div>;
+          }}
+        </Consumer>
         <S.LoginCard>
           <S.Welcome>Bem Vindo</S.Welcome>
           <S.GoogleBtn onClick={this.handleLogInClick}>
@@ -75,5 +88,5 @@ class GoogleAuth extends Component {
     );
   }
 }
-
+GoogleAuth.contextType = appContext;
 export default GoogleAuth;
