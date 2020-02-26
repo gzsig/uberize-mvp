@@ -6,16 +6,16 @@ import AppContext from '../../context/AppContext';
 import queryString from 'query-string';
 
 class Login extends Component {
-  componentWillMount() {
-    this.context.validateUser();
-  }
-  componentDidMount() {
+
+  componentDidMount = async () => {
+    // console.log('did mount login');
     const query = queryString.parse(this.props.location.search);
     if (query.token) {
       window.localStorage.setItem('crpt', query.token);
       this.props.history.push('/');
       this.context.updateState({ loggedIn: 2 });
     }
+    await this.context.validateUser();
   }
 
   render() {

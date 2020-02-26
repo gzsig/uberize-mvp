@@ -12,11 +12,14 @@ class AppProvider extends Component {
   };
 
   validateUser = () => {
-    const { crpt } = window.location;
-    server
+    this.setState({loggedIn: 0})
+    const { crpt } = window.localStorage;
+    // console.log('validate user crpt:', crpt);
+    
+    server(window.localStorage.crpt)
       .post('refresh', { crpt })
       .then(res => {
-        console.log('res', res);
+        // console.log('res', res);
         if (res.data.valid) {
           this.setState({
             loggedIn: 2,
@@ -30,25 +33,37 @@ class AppProvider extends Component {
             loggedIn: 1
           });
         }
+        // console.log('validate user', this.state);
       })
       .catch(err => {
-        console.log('err', err.message);
+        // console.log('err', err.message);
         this.setState({
           loggedIn: 1
         });
       });
   };
 
+  logout = () => {
+    window.localStorage.removeItem('crpt');
+    this.validateUser()
+  };
+
   updateState = state => {
     this.setState(state);
+    this.setState({
+      loggedIn: 1
+    });
   };
 
   render() {
     const context = {
       state: this.state,
       updateState: this.updateState,
-      validateUser: this.validateUser
+      validateUser: this.validateUser,
+      logout: this.logout
     };
+    // console.log(context.state);
+
     return (
       <AppContext.Provider value={context}>
         {this.props.children}

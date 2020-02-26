@@ -1,6 +1,5 @@
 import axios from 'axios';
-const { crpt } = window.localStorage;
-const server = axios.create({
+const server = (crpt) => axios.create({
   baseURL: 'http://localhost:3001/',
   withCredentials: true,
   headers: { authorization: crpt }

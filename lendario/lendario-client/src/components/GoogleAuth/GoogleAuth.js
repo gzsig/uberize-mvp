@@ -26,8 +26,8 @@ class GoogleAuth extends Component {
   testCalClick = () => {
     // console.log('estou aqui click');
     // console.log(this.context.state);
-    
-    server
+
+    server(window.localStorage.crpt)
       .get('/google/cal')
       .then(res => {
         console.log(res.data);
