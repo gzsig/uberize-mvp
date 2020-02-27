@@ -8,7 +8,6 @@ import queryString from 'query-string';
 class Login extends Component {
 
   componentDidMount = async () => {
-    // console.log('did mount login');
     const query = queryString.parse(this.props.location.search);
     if (query.token) {
       window.localStorage.setItem('crpt', query.token);

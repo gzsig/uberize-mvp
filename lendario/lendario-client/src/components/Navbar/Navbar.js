@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { Title, Nav, Item, Items } from './style';
+import * as S from './style';
 import AppContext from '../../context/AppContext';
 
 class Navbar extends Component {
   render() {
     return (
-      <Nav>
-        <Title>Lendário</Title>
-        <Items>
-          <Item>Contato</Item>
-          {this.context.state.given_name && <Item>{this.context.state.given_name}</Item> }
-          {this.context.state.given_name && <Item onClick={this.context.logout}>Logout</Item> }
+      <S.Nav>
+        <S.Title onClick={()=>{window.location.assign('/')}}>Lendário</S.Title>
+        <S.Items>
+          <S.Item>Contato</S.Item>
+          {this.context.state.given_name && <S.Item>{this.context.state.given_name}</S.Item> }
+          {this.context.state.given_name && <S.Item onClick={this.context.logout}>Logout</S.Item> }
+          {this.context.state.given_name && <S.Item> <S.ThumbNail src={this.context.state.picture} /></S.Item> }
           
-        </Items>
-      </Nav>
+        </S.Items>
+      </S.Nav>
     )
   }
 }

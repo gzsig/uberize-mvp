@@ -1,37 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import queryString from 'query-string';
+import React, { Component } from 'react';
 import * as S from './style';
 import server from '../../resources/axios';
-import Consumer from '../../context/AppConsumer';
 import appContext from '../../context/AppContext';
-import Loader from '../Loader';
 
 class GoogleAuth extends Component {
-  // componentWillMount() {
-  //   this.context.validateUser();
-  // }
-  // componentDidMount() {
-  //   const query = queryString.parse(this.props.router.location.search);
-  //   if (query.token) {
-  //     window.localStorage.setItem('crpt', query.token);
-  //     this.props.router.history.push('/');
-  //     this.context.updateState({ loggedIn: 2 });
-  //   }
-  // }
   handleLogInClick = () => {
-    // server.get('/auth/google')
     window.location.assign('http://localhost:3001/auth/google');
   };
 
   testCalClick = () => {
-    // console.log('estou aqui click');
-    // console.log(this.context.state);
-
     server(window.localStorage.crpt)
       .get('/google/cal')
       .then(res => {
         console.log(res.data);
-        if (res.data.success == false) {
+        if (res.data.success === false) {
           console.log('logout');
         }
       })
@@ -44,11 +26,6 @@ class GoogleAuth extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <Consumer>
-          {context => {
-            return <div>{context.state.loggedIn === 0 ? <Loader /> : `${context.state.loggedIn}` }</div>;
-          }}
-        </Consumer> */}
         <S.LoginCard>
           <S.Welcome>Bem Vindo</S.Welcome>
           <S.GoogleBtn onClick={this.handleLogInClick}>
@@ -78,13 +55,12 @@ class GoogleAuth extends Component {
           </S.GoogleBtn>
           <S.Footer>
             Não tem gmail? Sem problemas,{' '}
-            <a href='https://gmail.com' target='_blank'>
+            <a href='https://gmail.com' target='_blank' rel="noopener noreferrer">
               crie
             </a>{' '}
             um agora!
           </S.Footer>
         </S.LoginCard>
-        <div onClick={this.testCalClick}>click me</div>
       </React.Fragment>
     );
   }

@@ -17,10 +17,9 @@ class CreateAccount extends Component {
       .then(res => {
         console.log(res.status);
         if (res.status === 200) {
-          alert(res.message);
-          this.props.router.history.push('/');
+          this.props.router.history.push(`/${this.state.username}`);
         } else {
-          alert(res.message);
+          alert(res.data.statusText);
         }
       });
   };

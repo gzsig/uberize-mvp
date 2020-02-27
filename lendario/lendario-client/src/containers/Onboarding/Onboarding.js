@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { CreateAccount } from '../../components';
+import { CreateAccount, Loader } from '../../components';
 import { Wrapper } from './style';
 import Consumer from '../../context/AppConsumer';
 import AppContext from '../../context/AppContext';
 
 class Onboarding extends Component {
-  componentDidMount = async () => {
+  componentWillMount = async () => {
     await this.context.validateUser();
-    console.log('name:', this.context.state.given_name);
   };
 
   render() {
@@ -15,13 +14,17 @@ class Onboarding extends Component {
       <Wrapper>
         <Consumer>
           {context => {
-            return (
-              <CreateAccount
-                name={context.state.given_name}
-                email={this.context.state.email}
-                router={this.props}
-              />
-            );
+            if (context.state.loggedIn === 0) {
+              return <Loader />;
+            } else if (context.state.loggedIn === 2) {
+              return (
+                <CreateAccount
+                  name={context.state.given_name}
+                  email={this.context.state.email}
+                  router={this.props}
+                />
+              );
+            }
           }}
         </Consumer>
       </Wrapper>

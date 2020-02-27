@@ -1,13 +1,13 @@
-import styled from 'styled-components'
-import * as colors from '../../resources/colors'
+import styled from 'styled-components';
+import * as colors from '../../resources/colors';
 
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
   color: ${colors.secondary};
-  `;
-  
-  const Item = styled.ul`
+`;
+
+const Item = styled.ul`
   color: ${colors.secondary};
 `;
 
@@ -22,8 +22,17 @@ const Nav = styled.nav`
   justify-content: space-between;
   background-color: ${colors.primary};
   padding: 0 20%;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   height: 68px;
 `;
 
-export { Item, Items, Title, Nav }
+const ThumbNail = styled.img`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+`;
+
+export { Item, Items, Title, Nav, ThumbNail };
