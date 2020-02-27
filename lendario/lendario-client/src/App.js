@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Login, Onboarding } from './containers';
 import { Navbar, Loader } from './components';
 import AppProvider from './context/AppProvider';
+import Loggedin from './containers/Loggedin';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path='/' component={Login} />
         <Route exact path='/onboarding' component={Onboarding} />
         <Route exact path='/teste' component={Loader} />
+        <Route exact path='/:username' component={Loggedin} />
       </Switch>
     </AppProvider>
   );
