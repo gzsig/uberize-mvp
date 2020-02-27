@@ -15,7 +15,8 @@ const clientRefresh = (req, res) => {
             email: `${existingUser.email}`,
             picture: `${existingUser.picture}`,
             given_name: `${existingUser.given_name}`,
-            family_name: `${existingUser.family_name}`
+            family_name: `${existingUser.family_name}`,
+            username: `${existingUser.username}`,
           });
           return;
         });

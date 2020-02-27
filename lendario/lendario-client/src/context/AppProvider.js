@@ -12,10 +12,10 @@ class AppProvider extends Component {
   };
 
   validateUser = () => {
-    this.setState({loggedIn: 0})
+    this.setState({ loggedIn: 0 });
     const { crpt } = window.localStorage;
     // console.log('validate user crpt:', crpt);
-    
+
     return server(window.localStorage.crpt)
       .post('refresh', { crpt })
       .then(res => {
@@ -26,13 +26,19 @@ class AppProvider extends Component {
             email: res.data.email,
             picture: res.data.picture,
             given_name: res.data.given_name,
-            family_name: res.data.family_name
+            family_name: res.data.family_name,
+            username: res.data.username
           });
         } else {
           window.localStorage.removeItem('crpt');
           this.setState({
-            loggedIn: 1
+            loggedIn: 1,
+            email: '',
+            picture: '',
+            given_name: '',
+            family_name: '',
           });
+          window.location.pathname !== '/' && window.location.assign('/');
         }
         // console.log('validate user', this.state);
       })
@@ -40,21 +46,23 @@ class AppProvider extends Component {
         // console.log('err', err.message);
         window.localStorage.removeItem('crpt');
         this.setState({
-          loggedIn: 1
+          loggedIn: 1,
+          email: '',
+          picture: '',
+          given_name: '',
+          family_name: '',
         });
+        window.location.pathname !== '/' && window.location.assign('/');
       });
   };
 
   logout = () => {
     window.localStorage.removeItem('crpt');
-    this.validateUser()
+    this.validateUser();
   };
 
   updateState = state => {
     this.setState(state);
-    this.setState({
-      loggedIn: 1
-    });
   };
 
   render() {
