@@ -16,7 +16,7 @@ class AppProvider extends Component {
     const { crpt } = window.localStorage;
     // console.log('validate user crpt:', crpt);
     
-    server(window.localStorage.crpt)
+    return server(window.localStorage.crpt)
       .post('refresh', { crpt })
       .then(res => {
         // console.log('res', res);
@@ -29,6 +29,7 @@ class AppProvider extends Component {
             family_name: res.data.family_name
           });
         } else {
+          window.localStorage.removeItem('crpt');
           this.setState({
             loggedIn: 1
           });
@@ -37,6 +38,7 @@ class AppProvider extends Component {
       })
       .catch(err => {
         // console.log('err', err.message);
+        window.localStorage.removeItem('crpt');
         this.setState({
           loggedIn: 1
         });
@@ -62,7 +64,7 @@ class AppProvider extends Component {
       validateUser: this.validateUser,
       logout: this.logout
     };
-    // console.log(context.state);
+    console.log(context.state);
 
     return (
       <AppContext.Provider value={context}>

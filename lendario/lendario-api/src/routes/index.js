@@ -4,7 +4,6 @@ const passport = require('passport');
 const gcal = require('google-calendar');
 const axios = require('axios');
 // let jwt = require('jsonwebtoken');
-// const { User } = require('../models');
 const { singinSignup, clientRefresh } = require('../controllers');
 const { authMiddleware } = require('../resources');
 const { User } = require('../models');
@@ -29,6 +28,22 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/', session: false }),
   singinSignup
 );
+
+router.post('/onboarding', (req, res) => {
+  console.log(req.body);
+  const { email, username } = req.body;
+  User.updateOne({ email }, { $set: { username } })
+    .then(existingUser => {
+      console.log('success', existingUser);
+      res.status(200).json({ message: existingUser });
+      return;
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: err });
+      return;
+    });
+});
 
 router.post('/refresh', authMiddleware, clientRefresh);
 

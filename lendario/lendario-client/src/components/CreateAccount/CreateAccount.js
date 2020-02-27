@@ -1,7 +1,30 @@
-import React, { Component } from 'react'
-import * as S from './style'
+import React, { Component } from 'react';
+import * as S from './style';
+import server from '../../resources/axios';
 
-export default class CreateAccount extends Component {
+class CreateAccount extends Component {
+  state = {
+    username: ''
+  };
+  createUsername = event => {
+    event.preventDefault();
+    console.log(this.state.username);
+    server(window.localStorage.crpt)
+      .post('onboarding', {
+        email: this.props.email,
+        username: this.state.username
+      })
+      .then(res => {
+        console.log(res.status);
+        if (res.status === 200) {
+          alert(res.message);
+          this.props.router.history.push('/');
+        } else {
+          alert(res.message);
+        }
+      });
+  };
+
   render() {
     return (
       <div>
@@ -9,21 +32,26 @@ export default class CreateAccount extends Component {
           <div>
             <p>
               Olá,
-            <S.Name> Gabriel</S.Name>
+              <S.Name> {this.props.name} </S.Name>
             </p>
-            <span>Precisamos de algumas informações</span>
+            <span>Precisamos criar um apelido</span>
           </div>
           <div>
-            <S.Label>Nome</S.Label>
-            <S.Filed type="text" name="business" autoComplete="off" />
+            <S.Label>apelido</S.Label>
+            <S.Filed
+              type='text'
+              name='username'
+              autoComplete='off'
+              onChange={event => {
+                this.setState({ username: event.target.value });
+              }}
+            />
           </div>
-          <div>
-            <S.Label>Username</S.Label>
-            <S.Filed type="text" name="username" autoComplete="off" />
-          </div>
-          <S.Button>Salvar</S.Button>
+          <S.Button onClick={this.createUsername}>Salvar</S.Button>
         </S.OnboardCard>
       </div>
-    )
+    );
   }
 }
+
+export default CreateAccount;
