@@ -5,6 +5,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+a {
+  text-decoration:none;
+}
+
 .loader {
   color: #D55F8F;
   position: fixed;
@@ -24,7 +28,7 @@ body {
 }
 
 .loader.is-active {
-  background-color: rgba(51, 55, 69, 0.85);
+  background-color: rgba(51, 55, 69, 0.99);
   width: 100%;
   height: 100%;
   left: 0;
