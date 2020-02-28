@@ -1,3 +1,3 @@
 import  Onboarding  from "./Onboarding";
 
-export { Onboarding }
+export default  Onboarding 
