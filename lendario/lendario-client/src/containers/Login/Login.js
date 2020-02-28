@@ -12,9 +12,9 @@ class Login extends Component {
     if (query.token) {
       window.localStorage.setItem('crpt', query.token);
       this.props.history.push('/');
-      this.context.updateState({ loggedIn: 2 });
     }
     await this.context.validateUser();
+    this.context.state.loggedIn === 2 && this.props.history.push(`/${this.context.state.username}`);
   }
 
   render() {
