@@ -9,6 +9,7 @@ const Title = styled.h1`
 
 const Item = styled.ul`
   color: ${colors.secondary};
+  cursor: pointer;
 `;
 
 const Items = styled.ul`

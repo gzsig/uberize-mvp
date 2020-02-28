@@ -15,7 +15,7 @@ const Header = styled.div`
   padding: 10px 10px 5px 10px;
   display: flex;
   justify-content: space-between;
-  background-color: {colors.offWhite};
+  background-color: ${colors.beige};
 `;
 
 const Button = styled.div`
@@ -26,6 +26,7 @@ const Body = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  background-color: ${colors.beige}
 `;
 
 const Day = styled.div`
@@ -45,7 +46,7 @@ const DayHead = styled.div`
   align-items: center;
   color: ${colors.secondary};
   margin-bottom: 6px;
-border-bottom: solid 1px ${colors.primary};
+  border-bottom: solid 1px ${colors.primary};
 `;
 
 const Event = styled.div`

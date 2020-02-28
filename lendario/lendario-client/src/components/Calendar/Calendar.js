@@ -47,16 +47,16 @@ export default function Calendar(props) {
 
   return (
     <S.Frame>
-      {console.log(props.events)}
+      {/* {console.log(props.events)} */}
       <S.Header>
         <S.Button onClick={() => setDate(new Date(year, month - 1, day))}>
-          Prev
+          -
         </S.Button>
         <div>
           {MONTHS[month]} {year}
         </div>
         <S.Button onClick={() => setDate(new Date(year, month + 1, day))}>
-          Next
+          +
         </S.Button>
       </S.Header>
       <S.Body>
@@ -80,7 +80,7 @@ export default function Calendar(props) {
                 {props.events.length &&
                   props.events.map((e, key) => {
                     const eventDay = new Date(e.start.dateTime);
-                    console.log(eventDay);
+                    {/* console.log(eventDay); */}
                     return (
                       eventDay.getDate() === d &&
                       eventDay.getMonth() === month &&
