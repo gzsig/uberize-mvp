@@ -1,7 +1,3 @@
-//         {this.props.events.map((e, key) => {
-//           return <div key={key}>{e.summary}</div>;
-//         })}
-
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import * as S from './style';
@@ -87,7 +83,10 @@ export default function Calendar(props) {
                     console.log(eventDay);
                     return (
                       eventDay.getDate() === d &&
-                      eventDay.getMonth() === month && <S.Event key={key}>{e.summary}</S.Event>
+                      eventDay.getMonth() === month &&
+                      eventDay.getFullYear() === year && (
+                        <S.Event key={key}>{e.summary}</S.Event>
+                      )
                     );
                   })}
               </S.Day>
