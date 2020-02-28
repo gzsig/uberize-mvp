@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { GoogleAuth, Loader } from '../../components';
-import { Wrapper } from './style';
 import Consumer from '../../context/AppConsumer';
 import AppContext from '../../context/AppContext';
 import queryString from 'query-string';
+import * as G from '../../resources/globalStyle';
 
 class Login extends Component {
-
   componentDidMount = async () => {
     const query = queryString.parse(this.props.location.search);
     if (query.token) {
@@ -14,12 +13,13 @@ class Login extends Component {
       this.props.history.push('/');
     }
     await this.context.validateUser();
-    this.context.state.loggedIn === 2 && this.props.history.push(`/le/${this.context.state.username}`);
-  }
+    this.context.state.loggedIn === 2 &&
+      this.props.history.push(`/le/${this.context.state.username}`);
+  };
 
   render() {
     return (
-      <Wrapper>
+      <G.Wrapper>
         <Consumer>
           {context => {
             if (context.state.loggedIn === 1) {
@@ -29,7 +29,7 @@ class Login extends Component {
             }
           }}
         </Consumer>
-      </Wrapper>
+      </G.Wrapper>
     );
   }
 }

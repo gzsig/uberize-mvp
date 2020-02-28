@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { CreateAccount, Loader } from '../../components';
-import { Wrapper } from './style';
 import Consumer from '../../context/AppConsumer';
 import AppContext from '../../context/AppContext';
+import * as G from '../../resources/globalStyle'
 
 class Onboarding extends Component {
   componentWillMount = async () => {
@@ -11,7 +11,7 @@ class Onboarding extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <G.Wrapper>
         <Consumer>
           {context => {
             if (context.state.loggedIn === 0) {
@@ -27,7 +27,7 @@ class Onboarding extends Component {
             }
           }}
         </Consumer>
-      </Wrapper>
+      </G.Wrapper>
     );
   }
 }

@@ -4,6 +4,7 @@ import server from '../../resources/axios';
 import { Loader } from '../../components';
 import Calendar from '../../components/Calendar';
 import * as S from './style'
+import * as G from '../../resources/globalStyle'
 
 class CalendarView extends Component {
   state = {
@@ -25,7 +26,7 @@ class CalendarView extends Component {
 
   render() {
     return (
-      <S.Wrapper>
+      <G.Wrapper>
       Horários esse mês
       <div>
         {this.state.events.length ? (
@@ -34,7 +35,7 @@ class CalendarView extends Component {
           <Loader />
         )}
       </div>
-      </S.Wrapper>
+      </G.Wrapper>
     );
   }
 }
