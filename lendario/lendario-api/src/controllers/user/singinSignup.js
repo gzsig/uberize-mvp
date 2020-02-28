@@ -8,7 +8,8 @@ const singinSignup = (req, res) => {
     given_name,
     family_name,
     accessToken,
-    refreshToken
+    refreshToken,
+    expiry_date
   } = req.user;
   User.findOne({ email }).then(existingUser => {
     if (existingUser) {
@@ -27,7 +28,8 @@ const singinSignup = (req, res) => {
         given_name,
         family_name,
         accessToken,
-        refreshToken
+        refreshToken,
+        expiry_date
       })
         .then(newUser => {
           const id = newUser._id.toString();

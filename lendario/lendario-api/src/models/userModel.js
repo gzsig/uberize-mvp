@@ -9,6 +9,7 @@ const userSchema = new Schema({
   picture: String,
   refreshToken: String,
   accessToken: String,
+  expiry_date: String,
 },
   {
     timestamps: true

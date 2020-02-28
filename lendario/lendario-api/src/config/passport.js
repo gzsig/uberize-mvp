@@ -2,6 +2,7 @@ require('dotenv').config();
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const moment = require("moment");
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -31,15 +32,16 @@ passport.use(
         picture,
         email,
       } = _json
+      const expiry_date = moment().add(params.expires_in, "s").format("X");
       const userData = {
         given_name,
         family_name,
         picture,
         email,
         accessToken,
-        refreshToken
+        refreshToken,
+        expiry_date
       };
-
       done(null, userData);
     }
   )

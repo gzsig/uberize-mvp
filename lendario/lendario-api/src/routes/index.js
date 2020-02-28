@@ -5,7 +5,8 @@ const {
   upcomingEvents,
   singinSignup,
   clientRefresh,
-  onboarding
+  onboarding,
+  tokenValidator
 } = require('../controllers');
 const { authMiddleware } = require('../resources');
 
@@ -22,7 +23,7 @@ router.get(
   '/auth/google',
   passport.authenticate('google', {
     scope: defaultScope,
-    accessType: 'offline',
+    accessType: 'offline'
     // prompt: 'consent',
   })
 );
@@ -31,9 +32,9 @@ router.get(
   passport.authenticate('google', { failureRedirect: '/', session: false }),
   singinSignup
 );
-router.post('/onboarding', authMiddleware, onboarding);
-router.post('/refresh', authMiddleware, clientRefresh);
-router.get('/google/cal', authMiddleware, upcomingEvents);
+router.post('/onboarding', authMiddleware, tokenValidator, onboarding);
+router.post('/refresh', authMiddleware, tokenValidator, clientRefresh);
+router.get('/google/cal', authMiddleware, tokenValidator, upcomingEvents);
 
 module.exports = {
   router
