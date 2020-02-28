@@ -8,7 +8,8 @@ class AppProvider extends Component {
     email: '',
     picture: '',
     given_name: '',
-    family_name: ''
+    family_name: '',
+    force_reload: null
   };
 
   validateUser = () => {
@@ -27,8 +28,11 @@ class AppProvider extends Component {
             picture: res.data.picture,
             given_name: res.data.given_name,
             family_name: res.data.family_name,
-            username: res.data.username
+            username: res.data.username,
+            force_reload: res.data.force_reload
           });
+          this.state.force_reload &&
+            this.forceReload(this.state.force_reload, this);
         } else {
           window.localStorage.removeItem('crpt');
           this.setState({
@@ -37,6 +41,7 @@ class AppProvider extends Component {
             picture: '',
             given_name: '',
             family_name: '',
+            force_reload: null,
           });
           window.location.pathname !== '/' && window.location.assign('/');
         }
@@ -51,6 +56,7 @@ class AppProvider extends Component {
           picture: '',
           given_name: '',
           family_name: '',
+          force_reload: null,
         });
         window.location.pathname !== '/' && window.location.assign('/');
       });
@@ -59,6 +65,18 @@ class AppProvider extends Component {
   logout = () => {
     window.localStorage.removeItem('crpt');
     this.validateUser();
+  };
+
+  forceReload = (time, vu) => {
+    let timeleft = parseInt(time);
+    let downloadTimer = setInterval(function() {
+      if (timeleft >= -250) {
+        vu.validateUser();
+        clearInterval(downloadTimer);
+      }
+      timeleft += 1;
+      // console.log('timeleft', timeleft);
+    }, 1000);
   };
 
   updateState = state => {

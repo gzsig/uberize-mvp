@@ -1,9 +1,10 @@
 const axios = require('axios');
 const { User } = require('../models');
+const moment = require('moment');
 
 const clientRefresh = (req, res) => {
   const { accessToken, userId } = req.decoded;
-  console.log(accessToken)
+  console.log(accessToken);
   axios
     .get(
       `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -18,6 +19,9 @@ const clientRefresh = (req, res) => {
             given_name: `${existingUser.given_name}`,
             family_name: `${existingUser.family_name}`,
             username: `${existingUser.username}`,
+            force_reload: moment()
+              .subtract(existingUser.expiry_date)
+              .format('X')
           });
           return;
         });
@@ -30,8 +34,8 @@ const clientRefresh = (req, res) => {
       res.status(403).json({ message: `${err.response.data.error}` });
       return;
     });
-}
+};
 
 module.exports = {
-  clientRefresh,
-}
+  clientRefresh
+};
