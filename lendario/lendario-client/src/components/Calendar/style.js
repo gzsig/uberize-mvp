@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 import * as colors from '../../resources/colors';
 
-const Frame = styled.div`
-  min-width: 400px;
-  width: 98%;
-  border: 1px solid ${colors.primary};
-  box-shadow: 2px 2px 2px #eee;
-  margin: auto;
-`;
-
 const Header = styled.div`
   font-size: 18px;
   font-weight: bold;
@@ -27,7 +19,7 @@ const Body = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  background-color: ${colors.beige}
+  background-color: ${colors.beige};
 `;
 
 const Day = styled.div`
@@ -57,4 +49,4 @@ const Event = styled.div`
   font-size: 12px;
 `;
 
-export { Button, Body, Day, DayHead, Frame, Header, Event };
+export { Button, Body, Day, DayHead, Header, Event };

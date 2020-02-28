@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import * as S from './style';
+import * as G from '../../resources/globalStyle'
 
 export default function Calendar(props) {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -46,7 +47,7 @@ export default function Calendar(props) {
   const days = isLeapYear ? DAYS_LEAP : DAYS;
 
   return (
-    <S.Frame>
+    <G.Frame>
       {/* {console.log(props.events)} */}
       <S.Header>
         <S.Button onClick={() => setDate(new Date(year, month - 1, day))}>
@@ -93,6 +94,6 @@ export default function Calendar(props) {
             );
           })}
       </S.Body>
-    </S.Frame>
+    </G.Frame>
   );
 }

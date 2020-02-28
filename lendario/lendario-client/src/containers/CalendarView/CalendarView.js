@@ -3,8 +3,8 @@ import AppContext from '../../context/AppContext';
 import server from '../../resources/axios';
 import { Loader } from '../../components';
 import Calendar from '../../components/Calendar';
-import * as S from './style'
-import * as G from '../../resources/globalStyle'
+import * as S from './style';
+import * as G from '../../resources/globalStyle';
 
 class CalendarView extends Component {
   state = {
@@ -27,14 +27,12 @@ class CalendarView extends Component {
   render() {
     return (
       <G.Wrapper>
-      Horários esse mês
-      <div>
+        Horários esse mês
         {this.state.events.length ? (
           <Calendar events={this.state.events} />
         ) : (
           <Loader />
         )}
-      </div>
       </G.Wrapper>
     );
   }
