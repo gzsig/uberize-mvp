@@ -18,10 +18,11 @@ passport.use(
       callbackURL: "http://localhost:3001/auth/google/callback",
       passReqToCallback: true,
     },
-    function (req, accessToken, refreshToken, profile, done) {
+    function (req, accessToken, refreshToken, params, profile, done) {
       // console.log('req', req)
-      // console.log('accessToken', accessToken)
-      // console.log('refreshToken', refreshToken)
+      console.log('params: ------>', params)
+      console.log('accessToken: ------>', accessToken)
+      console.log('refreshToken: ------>', refreshToken)
       // console.log('profile', profile)
       const { _json } = profile
       const {
