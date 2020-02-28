@@ -3,7 +3,7 @@ import * as colors from '../../resources/colors';
 
 const Frame = styled.div`
   min-width: 400px;
-  width: 75%;
+  width: 98%;
   border: 1px solid ${colors.primary};
   box-shadow: 2px 2px 2px #eee;
   margin: auto;
@@ -15,6 +15,7 @@ const Header = styled.div`
   padding: 10px 10px 5px 10px;
   display: flex;
   justify-content: space-between;
+  color: ${colors.primary};
   background-color: ${colors.beige};
 `;
 
@@ -36,7 +37,7 @@ const Day = styled.div`
   ${'' /* justify-content: center; */}
   align-items: center;
   color: ${colors.secondary};
-  height: 70px;
+  height: 80px;
 `;
 
 const DayHead = styled.div`

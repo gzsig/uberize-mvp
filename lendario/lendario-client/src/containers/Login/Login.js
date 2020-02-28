@@ -14,7 +14,7 @@ class Login extends Component {
       this.props.history.push('/');
     }
     await this.context.validateUser();
-    this.context.state.loggedIn === 2 && this.props.history.push(`/${this.context.state.username}`);
+    this.context.state.loggedIn === 2 && this.props.history.push(`/le/${this.context.state.username}`);
   }
 
   render() {
