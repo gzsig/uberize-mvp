@@ -38,15 +38,15 @@ router.get('/google/cal', authMiddleware, (req, res) => {
     'primary',
     {
       timeMin: new Date().toISOString(),
-      maxResults: 10,
+      maxResults: 30,
       singleEvents: true,
       orderBy: 'startTime'
     },
     (err, events) => {
       console.log('events ----->', events.items);
+      res.status(200).json(events.items);
     }
   );
-  res.status(200).end;
 });
 
 module.exports = {
