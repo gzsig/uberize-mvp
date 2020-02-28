@@ -3,6 +3,7 @@ const { User } = require('../models');
 
 const clientRefresh = (req, res) => {
   const { accessToken, userId } = req.decoded;
+  console.log(accessToken)
   axios
     .get(
       `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
