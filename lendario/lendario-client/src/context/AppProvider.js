@@ -41,7 +41,7 @@ class AppProvider extends Component {
             picture: '',
             given_name: '',
             family_name: '',
-            force_reload: null,
+            force_reload: null
           });
           window.location.pathname !== '/' && window.location.assign('/');
         }
@@ -56,7 +56,7 @@ class AppProvider extends Component {
           picture: '',
           given_name: '',
           family_name: '',
-          force_reload: null,
+          force_reload: null
         });
         window.location.pathname !== '/' && window.location.assign('/');
       });
@@ -69,14 +69,10 @@ class AppProvider extends Component {
 
   forceReload = (time, vu) => {
     let timeleft = parseInt(time);
-    let downloadTimer = setInterval(function() {
-      if (timeleft >= -250) {
-        vu.validateUser();
-        clearInterval(downloadTimer);
-      }
-      timeleft += 1;
-      // console.log('timeleft', timeleft);
-    }, 1000);
+    console.log((timeleft + 285) * -1000);
+    setTimeout(function() {
+      vu.validateUser();
+    }, (timeleft + 285) * -1000);
   };
 
   updateState = state => {
