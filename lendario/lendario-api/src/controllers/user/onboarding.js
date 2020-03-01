@@ -11,7 +11,12 @@ const onboarding = (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ message: err });
+      res
+        .status(500)
+        .json({
+          message: 'Sorry we encountered an error on our end :/',
+          error: err
+        });
       return;
     });
 };
