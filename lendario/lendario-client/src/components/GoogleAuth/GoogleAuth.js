@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as S from './style';
+import * as G from '../../resources/globalStyle';
 import server from '../../resources/axios';
 import appContext from '../../context/AppContext';
 
@@ -8,25 +9,10 @@ class GoogleAuth extends Component {
     window.location.assign('http://localhost:3001/auth/google');
   };
 
-  testCalClick = () => {
-    server(window.localStorage.crpt)
-      .get('/google/cal')
-      .then(res => {
-        console.log(res.data);
-        if (res.data.success === false) {
-          console.log('logout');
-        }
-      })
-      .catch(err => {
-        console.log('estou aqui errr');
-        console.log('err', err);
-      });
-  };
-
   render() {
     return (
       <React.Fragment>
-        <S.LoginCard>
+        <G.BeigeCard>
           <S.Welcome>Bem Vindo</S.Welcome>
           <S.GoogleBtn onClick={this.handleLogInClick}>
             <S.SvgIcon>
@@ -55,12 +41,16 @@ class GoogleAuth extends Component {
           </S.GoogleBtn>
           <S.Footer>
             Não tem gmail? Sem problemas,{' '}
-            <a href='https://gmail.com' target='_blank' rel="noopener noreferrer">
+            <a
+              href='https://gmail.com'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               crie
             </a>{' '}
             um agora!
           </S.Footer>
-        </S.LoginCard>
+        </G.BeigeCard>
       </React.Fragment>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as S from './style';
+import * as G from '../../resources/globalStyle';
 import server from '../../resources/axios';
 
 class CreateAccount extends Component {
@@ -27,7 +28,7 @@ class CreateAccount extends Component {
   render() {
     return (
       <div>
-        <S.OnboardCard>
+        <G.BeigeCard>
           <div>
             <p>
               Olá,
@@ -36,8 +37,8 @@ class CreateAccount extends Component {
             <span>Precisamos criar um apelido</span>
           </div>
           <div>
-            <S.Label>apelido</S.Label>
-            <S.Filed
+            <G.Label>apelido</G.Label>
+            <G.FiledS
               type='text'
               name='username'
               autoComplete='off'
@@ -46,8 +47,8 @@ class CreateAccount extends Component {
               }}
             />
           </div>
-          <S.Button onClick={this.createUsername}>Salvar</S.Button>
-        </S.OnboardCard>
+          <G.Button onClick={this.createUsername}>Salvar</G.Button>
+        </G.BeigeCard>
       </div>
     );
   }
