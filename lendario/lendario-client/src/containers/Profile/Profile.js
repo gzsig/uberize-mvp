@@ -3,7 +3,6 @@ import AppContext from '../../context/AppContext';
 import * as S from './style';
 import * as G from '../../resources/globalStyle';
 import EventCard from '../../components/EventCard/EventCard';
-import { Link } from 'react-router-dom';
 import { Loader, ATag } from '../../components';
 import Consumer from '../../context/AppConsumer';
 
