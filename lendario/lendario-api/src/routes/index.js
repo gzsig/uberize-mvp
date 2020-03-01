@@ -7,7 +7,8 @@ const {
   clientRefresh,
   onboarding,
   tokenValidator,
-  createAppointment
+  createAppointment,
+  getAppointments
 } = require('../controllers');
 const { authMiddleware } = require('../resources');
 
@@ -41,12 +42,17 @@ router.get(
   tokenValidator,
   upcomingEvents
 );
-
 router.post(
   '/google/cal/appointment/new',
   authMiddleware,
   tokenValidator,
   createAppointment
+);
+router.get(
+  '/google/cal/appointments',
+  authMiddleware,
+  tokenValidator,
+  getAppointments
 );
 
 module.exports = {
