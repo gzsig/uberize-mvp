@@ -12,24 +12,30 @@ class Login extends Component {
       window.localStorage.setItem('crpt', query.token);
       this.props.history.push('/');
     }
-    await this.context.validateUser();
-    this.context.state.loggedIn === 2 &&
+
+    if (this.context.state.loggedIn === 2) {
       this.props.history.push(`/le/${this.context.state.username}`);
+    } else {
+      await this.context.validateUser();
+      this.props.history.push(`/le/${this.context.state.username}`);
+    }
   };
 
   render() {
     return (
-      <G.Wrapper>
-        <Consumer>
-          {context => {
-            if (context.state.loggedIn === 1) {
-              return <GoogleAuth router={this.props} />;
-            } else if (context.state.loggedIn === 0) {
-              return <Loader />;
-            }
-          }}
-        </Consumer>
-      </G.Wrapper>
+      <Consumer>
+        {context => {
+          if (context.state.loggedIn === 1) {
+            return (
+              <G.Wrapper>
+                <GoogleAuth router={this.props} />
+              </G.Wrapper>
+            );
+          } else if (context.state.loggedIn === 0) {
+            return <Loader />;
+          }
+        }}
+      </Consumer>
     );
   }
 }

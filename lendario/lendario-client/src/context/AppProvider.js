@@ -13,7 +13,7 @@ class AppProvider extends Component {
   };
 
   validateUser = () => {
-    this.setState({ loggedIn: 0 });
+    this.state.given_name === '' && this.setState({ loggedIn: 0 });
     const { crpt } = window.localStorage;
     // console.log('validate user crpt:', crpt);
 
@@ -70,8 +70,9 @@ class AppProvider extends Component {
   forceReload = (time, vu) => {
     let timeleft = parseInt(time);
     console.log((timeleft + 285) * -1000);
-    setTimeout(function() {
+    let once = setTimeout(function() {
       vu.validateUser();
+      clearTimeout(once);
     }, (timeleft + 285) * -1000);
   };
 
