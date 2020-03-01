@@ -4,6 +4,16 @@ import CreateAccount from './CreateAccount';
 import Loader from './Loader';
 import EventCard from './EventCard';
 import Calendar from './Calendar';
-import ATag from './ATag'
+import ATag from './ATag';
+import EventForm from './EventForm';
 
-export { ATag, EventCard, Loader, CreateAccount, GoogleAuth, Navbar, Calendar };
+export {
+  ATag,
+  EventCard,
+  Loader,
+  CreateAccount,
+  GoogleAuth,
+  Navbar,
+  Calendar,
+  EventForm
+};
