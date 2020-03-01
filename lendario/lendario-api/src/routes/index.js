@@ -34,7 +34,9 @@ router.get(
 );
 router.post('/onboarding', authMiddleware, tokenValidator, onboarding);
 router.post('/refresh', authMiddleware, tokenValidator, clientRefresh);
-router.get('/google/cal', authMiddleware, tokenValidator, upcomingEvents);
+router.get('/google/cal/events', authMiddleware, tokenValidator, upcomingEvents);
+
+// router.post('/google/cal')
 
 module.exports = {
   router
