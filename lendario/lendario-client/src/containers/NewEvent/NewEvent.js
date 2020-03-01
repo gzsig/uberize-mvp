@@ -18,7 +18,7 @@ class NewEvent extends Component {
             return (
               <G.Wrapper>
                 {/* <G.Frame> */}
-                  <EventForm />
+                <EventForm router={this.props} />
                 {/* </G.Frame> */}
               </G.Wrapper>
             );
