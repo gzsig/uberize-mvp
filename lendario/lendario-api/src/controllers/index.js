@@ -1,5 +1,5 @@
 const { singinSignup, onboarding } = require('./user');
-const { upcomingEvents } = require('./googleCal');
+const { upcomingEvents, createAppointment } = require('./googleCal');
 const { clientRefresh } = require('./clientRefresh');
 const { tokenValidator } = require('./tokenValidator');
 module.exports = {
@@ -7,5 +7,6 @@ module.exports = {
   clientRefresh,
   onboarding,
   upcomingEvents,
-  tokenValidator
+  tokenValidator,
+  createAppointment
 };
