@@ -9,6 +9,7 @@ const EventCard = styled.div`
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
   padding: 6px;
   margin: 12px;
+  position: relative;
 `;
 
 const EventCardTitle = styled.div`
@@ -35,11 +36,17 @@ const EventCardLine = styled.div`
   margin-bottom: 2px;
 `;
 
+const EventCardFooter = styled.div`
+  position: absolute;
+  bottom: 2px;
+`;
+
 export {
   EventCard,
   EventCardTitle,
   EventCardBody,
   EventCardLabel,
   EventCardInfo,
-  EventCardLine
+  EventCardLine,
+  EventCardFooter
 };

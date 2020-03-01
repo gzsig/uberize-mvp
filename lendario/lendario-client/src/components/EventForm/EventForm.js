@@ -28,7 +28,7 @@ class EventForm extends Component {
         } else {
           alert(res.data.statusText);
         }
-      });
+      }).catch(err => alert(err))
   };
   render() {
     return (
