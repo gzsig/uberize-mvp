@@ -6,7 +6,7 @@ import * as G from '../../resources/globalStyle';
 export default function Calendar(props) {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  const DAYS_OF_THE_WEEK = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAT', 'DOM'];
+  const DAYS_OF_THE_WEEK = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAT'];
   const MONTHS = [
     'JAN',
     'FEV',
@@ -66,10 +66,10 @@ export default function Calendar(props) {
             <strong>{d}</strong>
           </S.DayHead>
         ))}
-        {Array(days[month] + (startDay - 1))
+        {Array(days[month] + startDay)
           .fill(null)
           .map((_, index) => {
-            const d = index - (startDay - 2);
+            const d = index - startDay + 1;
             return (
               <S.Day
                 key={index}
