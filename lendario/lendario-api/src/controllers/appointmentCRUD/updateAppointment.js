@@ -1,22 +1,14 @@
 const { Appointment } = require('../../models');
 
-const createAppointment = (req, res, next) => {
-  const { userId } = req.decoded;
-  console.log(req.body);
-  console.log('id', userId);
-
+const updateAppointment = (req, res, next) => {
   const { name, description, duration, location } = req.body.calAppointment;
-
-  Appointment.create({
-    user: userId,
-    name,
-    description,
-    duration,
-    location
-  })
+  Appointment.updateOne(
+    { _id: req.body.id },
+    { name, description, duration, location }
+  )
     .then(appointment => {
       console.log(appointment);
-      res.status(200).json({ message: 'New appointment created :)' });
+      res.status(200).json({ message: 'Appointment updated :)' });
     })
     .catch(err => {
       res.status(500).json({
@@ -27,5 +19,5 @@ const createAppointment = (req, res, next) => {
 };
 
 module.exports = {
-  createAppointment
+  updateAppointment
 };

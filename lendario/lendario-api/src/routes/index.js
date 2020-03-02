@@ -8,7 +8,9 @@ const {
   onboarding,
   tokenValidator,
   createAppointment,
-  getAppointments
+  getAppointments,
+  updateAppointment,
+  deleteAppointment
 } = require('../controllers');
 const { authMiddleware } = require('../resources');
 
@@ -47,6 +49,18 @@ router.post(
   authMiddleware,
   tokenValidator,
   createAppointment
+);
+router.patch(
+  '/google/cal/appointment/edit',
+  authMiddleware,
+  tokenValidator,
+  updateAppointment
+);
+router.delete(
+  '/google/cal/appointment/delete/:id',
+  authMiddleware,
+  tokenValidator,
+  deleteAppointment
 );
 router.get(
   '/google/cal/appointments',

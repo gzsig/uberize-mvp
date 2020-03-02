@@ -1,9 +1,11 @@
 const { singinSignup, onboarding } = require('./user');
+const { upcomingEvents } = require('./googleCal');
 const {
-  upcomingEvents,
   createAppointment,
-  getAppointments
-} = require('./googleCal');
+  getAppointments,
+  updateAppointment,
+  deleteAppointment
+} = require('./appointmentCRUD');
 const { clientRefresh } = require('./clientRefresh');
 const { tokenValidator } = require('./tokenValidator');
 module.exports = {
@@ -13,5 +15,7 @@ module.exports = {
   upcomingEvents,
   tokenValidator,
   createAppointment,
-  getAppointments
+  getAppointments,
+  updateAppointment,
+  deleteAppointment
 };
