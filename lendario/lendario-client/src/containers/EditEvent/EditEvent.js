@@ -3,9 +3,11 @@ import Consumer from '../../context/AppConsumer';
 import * as G from '../../resources/globalStyle';
 import AppContext from '../../context/AppContext';
 import { Loader, EventForm } from '../../components';
+import server from '../../resources/axios';
 
 class EditEvent extends Component {
   state = {
+    _id: '',
     name: '',
     description: '',
     duration: '',
@@ -25,6 +27,43 @@ class EditEvent extends Component {
     this.setState({ ...newState });
   };
 
+  handelInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSave = e => {
+    const calAppointment = this.state;
+    console.log(calAppointment);
+    server(window.localStorage.crpt)
+      .patch('/google/cal/appointment/edit', {
+        calAppointment,
+        id: this.state._id
+      })
+      .then(res => {
+        if (res.status === 200) {
+          this.props.history.push(`/le/${this.context.state.username}`);
+        } else {
+          alert(res.data.statusText);
+        }
+      })
+      .catch(err => alert(err));
+  };
+
+  handleDelete = e => {
+    server(window.localStorage.crpt)
+      .delete(`/google/cal/appointment/delete/${this.state._id}`)
+      .then(res => {
+        if (res.status === 200) {
+          this.props.history.push(`/le/${this.context.state.username}`);
+        } else {
+          alert(res.data.statusText);
+        }
+      })
+      .catch(err => alert(err));
+  };
+
   render() {
     return (
       <Consumer>
@@ -35,11 +74,13 @@ class EditEvent extends Component {
             return (
               <G.Wrapper>
                 <EventForm
-                  router={this.props}
                   name={this.state.name}
                   description={this.state.description}
                   duration={this.state.duration}
                   location={this.state.location}
+                  handelInput={this.handelInput}
+                  handleSave={this.handleSave}
+                  handleDelete={this.handleDelete}
                 />
               </G.Wrapper>
             );

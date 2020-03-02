@@ -1,37 +1,10 @@
 import React, { Component } from 'react';
 import * as S from './style';
 import * as G from '../../resources/globalStyle';
-import server from '../../resources/axios';
+// import server from '../../resources/axios';
 import AppContext from '../../context/AppContext';
 
 class EventForm extends Component {
-  state = {
-    name: '',
-    description: '',
-    duration: '',
-    location: ''
-  };
-
-  handelInput = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  handleSave = e => {
-    const calAppointment = this.state;
-    console.log(calAppointment);
-    server(window.localStorage.crpt)
-      .post('/google/cal/appointment/new', { calAppointment })
-      .then(res => {
-        if (res.status === 200) {
-          this.props.router.history.push(`/le/${this.context.state.username}`);
-        } else {
-          alert(res.data.statusText);
-        }
-      })
-      .catch(err => alert(err));
-  };
   render() {
     return (
       <S.FormCard>
@@ -41,7 +14,7 @@ class EventForm extends Component {
             type='text'
             name='name'
             autoComplete='off'
-            onChange={this.handelInput}
+            onChange={this.props.handelInput}
             value={this.props.name}
           />
         </div>
@@ -51,7 +24,7 @@ class EventForm extends Component {
             type='text'
             name='description'
             autoComplete='off'
-            onChange={this.handelInput}
+            onChange={this.props.handelInput}
             value={this.props.description}
           />
         </div>
@@ -61,7 +34,7 @@ class EventForm extends Component {
             type='number'
             name='duration'
             autoComplete='off'
-            onChange={this.handelInput}
+            onChange={this.props.handelInput}
             value={this.props.duration}
           />
         </div>
@@ -71,11 +44,14 @@ class EventForm extends Component {
             type='text'
             name='location'
             autoComplete='off'
-            onChange={this.handelInput}
+            onChange={this.props.handelInput}
             value={this.props.location}
           />
         </div>
-        <G.Button onClick={this.handleSave}>Salvar</G.Button>
+        <G.Button onClick={this.props.handleSave}>Salvar</G.Button>
+        {this.props.handleDelete && (
+          <button onClick={this.props.handleDelete}>del</button>
+        )}
       </S.FormCard>
     );
   }
