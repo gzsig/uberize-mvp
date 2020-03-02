@@ -5,6 +5,7 @@ import server from '../resources/axios';
 class AppProvider extends Component {
   state = {
     loggedIn: 0,
+    appointments: [],
     email: '',
     picture: '',
     given_name: '',
@@ -62,6 +63,15 @@ class AppProvider extends Component {
       });
   };
 
+  getAppointments = () => {
+    return server(window.localStorage.crpt)
+      .get('google/cal/appointments')
+      .then(res => {
+        console.log(res.data);
+        this.setState({ appointments: res.data.appointments });
+      });
+  };
+
   logout = () => {
     window.localStorage.removeItem('crpt');
     this.validateUser();
@@ -85,7 +95,8 @@ class AppProvider extends Component {
       state: this.state,
       updateState: this.updateState,
       validateUser: this.validateUser,
-      logout: this.logout
+      logout: this.logout,
+      getAppointments: this.getAppointments
     };
     console.log(context.state);
 

@@ -8,17 +8,9 @@ import Consumer from '../../context/AppConsumer';
 import server from '../../resources/axios';
 
 class Profile extends Component {
-  state = {
-    appointments: []
-  };
   componentDidMount = async () => {
     await this.context.validateUser();
-    server(window.localStorage.crpt)
-      .get('google/cal/appointments')
-      .then(res => {
-        console.log(res.data);
-        this.setState({ appointments: res.data.appointments });
-      });
+    await this.context.getAppointments();
   };
   render() {
     return (
@@ -26,7 +18,7 @@ class Profile extends Component {
         {context => {
           if (
             context.state.loggedIn === 0 ||
-            this.state.appointments.length === 0
+            context.state.appointments.length === 0
           ) {
             return <Loader />;
           } else if (context.state.loggedIn === 2) {
@@ -39,7 +31,7 @@ class Profile extends Component {
                     text='Novo Horario'
                   />
                   <S.Events>
-                    {this.state.appointments.map(appointment => {
+                    {context.state.appointments.map(appointment => {
                       return (
                         <EventCard
                           key={appointment._id}
