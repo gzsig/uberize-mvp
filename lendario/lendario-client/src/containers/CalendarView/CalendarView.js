@@ -1,9 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import AppContext from '../../context/AppContext';
 import server from '../../resources/axios';
 import { Loader } from '../../components';
 import { Calendar } from '../../components';
-import * as S from './style';
 import * as G from '../../resources/globalStyle';
 
 class CalendarView extends Component {

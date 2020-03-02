@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import * as S from './style';
 import * as G from '../../resources/globalStyle';
 import server from '../../resources/axios';

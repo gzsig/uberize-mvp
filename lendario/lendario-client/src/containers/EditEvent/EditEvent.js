@@ -33,12 +33,6 @@ class EditEvent extends Component {
           if (context.state.loggedIn === 0) {
             return <Loader />;
           } else if (context.state.loggedIn === 2) {
-            {
-              /* console.log( "props",this.props.match.params.id); */
-            }
-            {
-              /* console.log('props', context.state.appointments); */
-            }
             console.log(this.state);
             return (
               <G.Wrapper>

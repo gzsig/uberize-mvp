@@ -5,7 +5,6 @@ import * as G from '../../resources/globalStyle';
 import EventCard from '../../components/EventCard/EventCard';
 import { Loader, ATag } from '../../components';
 import Consumer from '../../context/AppConsumer';
-import server from '../../resources/axios';
 
 class Profile extends Component {
   componentDidMount = async () => {
