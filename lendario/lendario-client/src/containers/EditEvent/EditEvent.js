@@ -19,7 +19,6 @@ class EditEvent extends Component {
   };
 
   getAppointment = () => {
-    // console.log(this.context.state.appointments);
     const newState = this.context.state.appointments.filter(
       appointment => appointment._id === this.props.match.params.id
     )[0];
@@ -33,17 +32,8 @@ class EditEvent extends Component {
           if (context.state.loggedIn === 0) {
             return <Loader />;
           } else if (context.state.loggedIn === 2) {
-            {
-              /* console.log( "props",this.props.match.params.id); */
-            }
-            {
-              /* console.log('props', context.state.appointments); */
-            }
-            console.log(this.state);
             return (
               <G.Wrapper>
-                {/* <G.Frame> */}
-
                 <EventForm
                   router={this.props}
                   name={this.state.name}
@@ -51,7 +41,6 @@ class EditEvent extends Component {
                   duration={this.state.duration}
                   location={this.state.location}
                 />
-                {/* </G.Frame> */}
               </G.Wrapper>
             );
           }

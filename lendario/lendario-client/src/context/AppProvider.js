@@ -67,7 +67,7 @@ class AppProvider extends Component {
     return server(window.localStorage.crpt)
       .get('google/cal/appointments')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({ appointments: res.data.appointments });
       });
   };

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import * as S from './style';
-import * as G from '../../resources/globalStyle';
 
 export default function Calendar(props) {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -81,9 +80,7 @@ export default function Calendar(props) {
                 {props.events.length &&
                   props.events.map((e, key) => {
                     const eventDay = new Date(e.start.dateTime);
-                    {
-                      /* console.log(eventDay); */
-                    }
+
                     return (
                       eventDay.getDate() === d &&
                       eventDay.getMonth() === month &&
