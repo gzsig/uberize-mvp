@@ -5,8 +5,8 @@ import AppContext from '../../context/AppContext';
 import { Loader, EventForm } from '../../components';
 
 class NewEvent extends Component {
-  componentDidMount = () => {
-    this.context.validateUser();
+  componentDidMount = async () => {
+    await this.context.validateUser();
   };
   render() {
     return (

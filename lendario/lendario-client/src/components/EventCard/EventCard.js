@@ -24,7 +24,7 @@ class EventCard extends Component {
         </S.EventCardBody>
         <S.EventCardFooter>
           <ATag
-            path={`/le/${this.props.username}/${this.props.id}`}
+            path={`/le/${this.props.username}/evento/${this.props.id}`}
             text='Editar'
           />
         </S.EventCardFooter>

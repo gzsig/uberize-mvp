@@ -17,6 +17,7 @@ class EventForm extends Component {
       [e.target.name]: e.target.value
     });
   };
+
   handleSave = e => {
     const calAppointment = this.state;
     console.log(calAppointment);
@@ -28,7 +29,8 @@ class EventForm extends Component {
         } else {
           alert(res.data.statusText);
         }
-      }).catch(err => alert(err))
+      })
+      .catch(err => alert(err));
   };
   render() {
     return (
@@ -40,6 +42,7 @@ class EventForm extends Component {
             name='name'
             autoComplete='off'
             onChange={this.handelInput}
+            value={this.props.name}
           />
         </div>
         <div>
@@ -49,6 +52,7 @@ class EventForm extends Component {
             name='description'
             autoComplete='off'
             onChange={this.handelInput}
+            value={this.props.description}
           />
         </div>
         <div>
@@ -58,6 +62,7 @@ class EventForm extends Component {
             name='duration'
             autoComplete='off'
             onChange={this.handelInput}
+            value={this.props.duration}
           />
         </div>
         <div>
@@ -67,6 +72,7 @@ class EventForm extends Component {
             name='location'
             autoComplete='off'
             onChange={this.handelInput}
+            value={this.props.location}
           />
         </div>
         <G.Button onClick={this.handleSave}>Salvar</G.Button>

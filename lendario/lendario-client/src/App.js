@@ -6,7 +6,8 @@ import {
   Onboarding,
   CalendarView,
   Profile,
-  NewEvent
+  NewEvent,
+  EditEvent
 } from './containers';
 import { Navbar, Loader } from './components';
 import AppProvider from './context/AppProvider';
@@ -21,6 +22,7 @@ function App() {
         <Route exact path='/le/calendario' component={CalendarView} />
         <Route exact path='/le/:username' component={Profile} />
         <Route exact path='/le/:username/evento' component={NewEvent} />
+        <Route exact path='/le/:username/evento/:id' component={EditEvent} />
         <Route exact path='/teste' component={Loader} />
       </Switch>
     </AppProvider>
