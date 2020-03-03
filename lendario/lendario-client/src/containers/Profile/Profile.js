@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AppContext from '../../context/AppContext';
-import * as S from './style';
 import * as G from '../../resources/globalStyle';
 import AppointmentCard from '../../components/AppointmentCard/AppointmentCard';
 import { Loader, ATag } from '../../components';
@@ -30,7 +29,7 @@ class Profile extends Component {
                     path={`/le/${context.state.username}/evento`}
                     text='Novo Horario'
                   />
-                  <S.Events>
+                  <G.Events>
                     {context.state.appointments[0] !== 'empty' &&
                       context.state.appointments.map(appointment => {
                         return (
@@ -45,7 +44,7 @@ class Profile extends Component {
                           />
                         );
                       })}
-                  </S.Events>
+                  </G.Events>
                   {/* <button
                     onClick={() => {
                       console.log('here');

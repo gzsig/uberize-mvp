@@ -96,4 +96,20 @@ const Button = styled.a`
   }
 `;
 
-export { BeigeCard, Button, FiledS, FiledM, FiledL, Label, Frame, Wrapper };
+const Events = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
+
+export {
+  BeigeCard,
+  Button,
+  FiledS,
+  FiledM,
+  FiledL,
+  Label,
+  Frame,
+  Wrapper,
+  Events
+};
