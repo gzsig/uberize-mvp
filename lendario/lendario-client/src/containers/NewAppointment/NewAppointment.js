@@ -27,7 +27,7 @@ class NewAppointment extends Component {
     const calAppointment = this.state;
     console.log(calAppointment);
     server(window.localStorage.crpt)
-      .post('/google/cal/appointment/new', { calAppointment })
+      .post('/my/appointment/new', { calAppointment })
       .then(res => {
         if (res.status === 200) {
           this.props.history.push(`/le/${this.context.state.username}`);

@@ -37,7 +37,7 @@ class EditAppointment extends Component {
     const calAppointment = this.state;
     console.log(calAppointment);
     server(window.localStorage.crpt)
-      .patch('/google/cal/appointment/edit', {
+      .patch('/my/appointment/edit', {
         calAppointment,
         id: this.state._id
       })
@@ -53,7 +53,7 @@ class EditAppointment extends Component {
 
   handleDelete = e => {
     server(window.localStorage.crpt)
-      .delete(`/google/cal/appointment/delete/${this.state._id}`)
+      .delete(`/my/appointment/delete/${this.state._id}`)
       .then(res => {
         if (res.status === 200) {
           this.props.history.push(`/le/${this.context.state.username}`);

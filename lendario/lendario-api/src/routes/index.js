@@ -39,6 +39,8 @@ router.get(
 );
 router.post('/onboarding', authMiddleware, tokenValidator, onboarding);
 router.post('/refresh', authMiddleware, tokenValidator, clientRefresh);
+
+// GOOGLE CALENDAR EVENTS
 router.get(
   '/google/cal/events',
   authMiddleware,
@@ -51,30 +53,36 @@ router.post(
   tokenValidator,
   createEvent
 );
+
+// APPOINTMENTS
 router.post(
-  '/google/cal/appointment/new',
+  '/my/appointment/new',
   authMiddleware,
   tokenValidator,
   createAppointment
 );
 router.patch(
-  '/google/cal/appointment/edit',
+  '/my/appointment/edit',
   authMiddleware,
   tokenValidator,
   updateAppointment
 );
 router.delete(
-  '/google/cal/appointment/delete/:id',
+  '/my/appointment/delete/:id',
   authMiddleware,
   tokenValidator,
   deleteAppointment
 );
 router.get(
-  '/google/cal/appointments',
+  '/my/appointments',
   authMiddleware,
   tokenValidator,
   getAppointments
 );
+
+router.get('/teste', (req, res) => {
+  res.status(200).json({ message: 'we are online' });
+});
 
 module.exports = {
   router
