@@ -1,5 +1,5 @@
 const { singinSignup, onboarding } = require('./user');
-const { upcomingEvents } = require('./googleCal');
+const { upcomingEvents, createEvent } = require('./googleCal');
 const {
   createAppointment,
   getAppointments,
@@ -17,5 +17,6 @@ module.exports = {
   createAppointment,
   getAppointments,
   updateAppointment,
-  deleteAppointment
+  deleteAppointment,
+  createEvent
 };

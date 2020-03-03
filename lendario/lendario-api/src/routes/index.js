@@ -10,7 +10,8 @@ const {
   createAppointment,
   getAppointments,
   updateAppointment,
-  deleteAppointment
+  deleteAppointment,
+  createEvent
 } = require('../controllers');
 const { authMiddleware } = require('../resources');
 
@@ -43,6 +44,12 @@ router.get(
   authMiddleware,
   tokenValidator,
   upcomingEvents
+);
+router.post(
+  '/google/cal/event/create',
+  authMiddleware,
+  tokenValidator,
+  createEvent
 );
 router.post(
   '/google/cal/appointment/new',
