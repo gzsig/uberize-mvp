@@ -5,6 +5,7 @@ import * as G from '../../resources/globalStyle';
 import EventCard from '../../components/EventCard/EventCard';
 import { Loader, ATag } from '../../components';
 import Consumer from '../../context/AppConsumer';
+import server from '../../resources/axios';
 
 class Profile extends Component {
   componentDidMount = async () => {
@@ -30,7 +31,7 @@ class Profile extends Component {
                     text='Novo Horario'
                   />
                   <S.Events>
-                    {context.state.appointments.map(appointment => {
+                    {context.state.appointments[0] !== 'empty' && context.state.appointments.map(appointment => {
                       return (
                         <EventCard
                           key={appointment._id}
@@ -44,6 +45,13 @@ class Profile extends Component {
                       );
                     })}
                   </S.Events>
+                  <button onClick={() => {
+                    console.log("here");
+                    
+                    server(window.localStorage.crpt).post('/google/cal/event/create')
+                  }}>
+                    aqui
+                    </button>
                 </G.Frame>
               </G.Wrapper>
             );

@@ -69,7 +69,10 @@ class AppProvider extends Component {
       .then(res => {
         // console.log(res.data);
         this.setState({ appointments: res.data.appointments });
-      });
+      }).catch(err => {
+        // console.log(err)
+        this.setState({ appointments: ['empty'] })
+      })
   };
 
   logout = () => {
@@ -80,7 +83,7 @@ class AppProvider extends Component {
   forceReload = (time, vu) => {
     let timeleft = parseInt(time);
     console.log((timeleft + 285) * -1000);
-    let once = setTimeout(function() {
+    let once = setTimeout(function () {
       vu.validateUser();
       clearTimeout(once);
     }, (timeleft + 285) * -1000);

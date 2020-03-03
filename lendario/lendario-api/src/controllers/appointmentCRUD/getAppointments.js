@@ -10,7 +10,7 @@ const getAppointments = (req, res, next) => {
           appointments
         });
       } else {
-        res.status(400).json({ message: 'No appointments were found :(' });
+        res.status(404).json({ message: 'No appointments were found :(' });
       }
     })
     .catch(err => {
