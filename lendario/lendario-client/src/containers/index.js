@@ -4,5 +4,14 @@ import CalendarView from './CalendarView';
 import Profile from './Profile';
 import NewAppointment from './NewAppointment';
 import EditAppointment from './EditAppointment';
+import NewEvent from './NewEvent';
 
-export { EditAppointment, NewAppointment, Onboarding, Login, CalendarView, Profile };
+export {
+  EditAppointment,
+  NewEvent,
+  NewAppointment,
+  Onboarding,
+  Login,
+  CalendarView,
+  Profile
+};

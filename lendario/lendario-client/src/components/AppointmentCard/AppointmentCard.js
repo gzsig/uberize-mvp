@@ -11,7 +11,9 @@ class AppointmentCard extends Component {
         <S.AppointmentCardBody>
           <S.AppointmentCardLine>
             <S.AppointmentCardLabel> Descricão: </S.AppointmentCardLabel>
-            <S.AppointmentCardInfo>{this.props.description}</S.AppointmentCardInfo>
+            <S.AppointmentCardInfo>
+              {this.props.description}
+            </S.AppointmentCardInfo>
           </S.AppointmentCardLine>
           <S.AppointmentCardLine>
             <S.AppointmentCardLabel>Duração: </S.AppointmentCardLabel>
@@ -23,10 +25,17 @@ class AppointmentCard extends Component {
           </S.AppointmentCardLine>
         </S.AppointmentCardBody>
         <S.AppointmentCardFooter>
-          <ATag
-            path={`/le/${this.props.username}/evento/${this.props.id}`}
-            text='Editar'
-          />
+          {this.props.patient ? (
+            <ATag
+              path={`/novo/${this.props.username}/${this.props.id}`}
+              text='Agendar'
+            />
+          ) : (
+            <ATag
+              path={`/le/${this.props.username}/evento/${this.props.id}`}
+              text='Editar'
+            />
+          )}
         </S.AppointmentCardFooter>
       </S.AppointmentCard>
     );

@@ -6,6 +6,7 @@ const {
   updateAppointment,
   deleteAppointment
 } = require('./appointmentCRUD');
+const { getAppointmentsPatient } = require('./patient');
 const { clientRefresh } = require('./clientRefresh');
 const { tokenValidator } = require('./tokenValidator');
 module.exports = {
@@ -18,5 +19,6 @@ module.exports = {
   getAppointments,
   updateAppointment,
   deleteAppointment,
-  createEvent
+  createEvent,
+  getAppointmentsPatient
 };

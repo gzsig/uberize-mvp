@@ -11,7 +11,8 @@ const {
   getAppointments,
   updateAppointment,
   deleteAppointment,
-  createEvent
+  createEvent,
+  getAppointmentsPatient
 } = require('../controllers');
 const { authMiddleware } = require('../resources');
 
@@ -54,7 +55,7 @@ router.post(
   createEvent
 );
 
-// APPOINTMENTS
+// MY APPOINTMENTS
 router.post(
   '/my/appointment/new',
   authMiddleware,
@@ -73,12 +74,10 @@ router.delete(
   tokenValidator,
   deleteAppointment
 );
-router.get(
-  '/my/appointments',
-  authMiddleware,
-  tokenValidator,
-  getAppointments
-);
+router.get('/my/appointments', authMiddleware, tokenValidator, getAppointments);
+
+// USER SEE APPOINTMENTS
+router.get('/patient/appointments/:username', getAppointmentsPatient);
 
 router.get('/teste', (req, res) => {
   res.status(200).json({ message: 'we are online' });
