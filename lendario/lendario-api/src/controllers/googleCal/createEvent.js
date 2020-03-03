@@ -21,41 +21,40 @@ const createEvent = (req, res, next) => {
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'A chance to hear more about Google\'s developer products.',
     'start': {
-      'dateTime': '2020-03-02T09:00:00-07:00',
+      'dateTime': '2020-03-03T09:00:00-07:00',
       'timeZone': 'America/Los_Angeles',
     },
     'end': {
-      'dateTime': '2020-03-02T11:00:00-07:00',
+      'dateTime': '2020-03-03T17:00:00-07:00',
       'timeZone': 'America/Los_Angeles',
     },
     'recurrence': [
-      // 'RRULE:FREQ=DAILY;COUNT=2'
+      'RRULE:FREQ=DAILY;COUNT=2'
     ],
     'attendees': [
-      // { 'email': 'lpage@example.com' },
-      // { 'email': 'sbrin@example.com' },
+      {'email': 'lpage@example.com'},
+      {'email': 'sbrin@example.com'},
     ],
     'reminders': {
       'useDefault': false,
       'overrides': [
-        // { 'method': 'email', 'minutes': 24 * 60 },
-        // { 'method': 'popup', 'minutes': 10 },
+        {'method': 'email', 'minutes': 24 * 60},
+        {'method': 'popup', 'minutes': 10},
       ],
     },
   };
-
-  // google_calendar.events.insert(
-  //   {
-  //     calendarId: 'primary',
-  //     resource: event,
-  //   }
-  // ), function (err, event) {
-  //   if (err) {
-  //     console.log('There was an error contacting the Calendar service: ' + err);
-  //     return;
-  //   }
-  //   console.log('Event created: %s', event.htmlLink);
-  // }
+  google_calendar.events.insert('primary',event,null
+    //{
+    //  calendarId: 'primary',
+    //  resource: event,
+    //}
+    , function (err, event) {
+    if (err) {
+      console.log('There was an error contacting the Calendar service: ' + err);
+      return;
+    }
+    console.log('Event created: %s', event.htmlLink);
+  })
 
 
   // function execute() {
@@ -73,14 +72,14 @@ const createEvent = (req, res, next) => {
   // }
 
 
-  google_calendar.events.insert({
-    calendarId: 'primary',
-    resource: event,
-  }).then(function (response) {
-    // Handle the results here (response.result has the parsed body).
-    console.log("Response", response);
-  },
-    function (err) { console.error("Execute error", err); });
+  // google_calendar.events.insert({
+  //   calendarId: 'primary',
+  //   resource: event,
+  // }).then(function (response) {
+  //   // Handle the results here (response.result has the parsed body).
+  //   console.log("Response", response);
+  // },
+  //   function (err) { console.error("Execute error", err); });
 
 
   // google_calendar.events.insert({

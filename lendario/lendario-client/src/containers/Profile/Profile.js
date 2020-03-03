@@ -31,27 +31,35 @@ class Profile extends Component {
                     text='Novo Horario'
                   />
                   <S.Events>
-                    {context.state.appointments[0] !== 'empty' && context.state.appointments.map(appointment => {
-                      return (
-                        <EventCard
-                          key={appointment._id}
-                          id={appointment._id}
-                          title={appointment.name}
-                          description={appointment.description}
-                          duration={appointment.duration}
-                          location={appointment.location}
-                          username={context.state.username}
-                        />
-                      );
-                    })}
+                    {context.state.appointments[0] !== 'empty' &&
+                      context.state.appointments.map(appointment => {
+                        return (
+                          <EventCard
+                            key={appointment._id}
+                            id={appointment._id}
+                            title={appointment.name}
+                            description={appointment.description}
+                            duration={appointment.duration}
+                            location={appointment.location}
+                            username={context.state.username}
+                          />
+                        );
+                      })}
                   </S.Events>
-                  <button onClick={() => {
-                    console.log("here");
-                    
-                    server(window.localStorage.crpt).post('/google/cal/event/create')
-                  }}>
+                  <button
+                    onClick={() => {
+                      console.log('here');
+
+                      server(window.localStorage.crpt)
+                        .post('/google/cal/event/create', {})
+                        .then(res => console.log(res))
+                        .catch(err => {
+                          console.log(err);
+                        });
+                    }}
+                  >
                     aqui
-                    </button>
+                  </button>
                 </G.Frame>
               </G.Wrapper>
             );
