@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Consumer from '../../context/AppConsumer';
 import * as G from '../../resources/globalStyle';
 import AppContext from '../../context/AppContext';
-import { Loader, EventForm } from '../../components';
+import { Loader, AppointmentForm } from '../../components';
 import server from '../../resources/axios';
 
-class NewEvent extends Component {
+class EditAppointment extends Component {
   state = {
+    _id: '',
     name: '',
     description: '',
     duration: '',
@@ -15,6 +16,15 @@ class NewEvent extends Component {
 
   componentDidMount = async () => {
     await this.context.validateUser();
+    await this.context.getAppointments();
+    this.getAppointment();
+  };
+
+  getAppointment = () => {
+    const newState = this.context.state.appointments.filter(
+      appointment => appointment._id === this.props.match.params.id
+    )[0];
+    this.setState({ ...newState });
   };
 
   handelInput = e => {
@@ -27,7 +37,23 @@ class NewEvent extends Component {
     const calAppointment = this.state;
     console.log(calAppointment);
     server(window.localStorage.crpt)
-      .post('/google/cal/appointment/new', { calAppointment })
+      .patch('/google/cal/appointment/edit', {
+        calAppointment,
+        id: this.state._id
+      })
+      .then(res => {
+        if (res.status === 200) {
+          this.props.history.push(`/le/${this.context.state.username}`);
+        } else {
+          alert(res.data.statusText);
+        }
+      })
+      .catch(err => alert(err));
+  };
+
+  handleDelete = e => {
+    server(window.localStorage.crpt)
+      .delete(`/google/cal/appointment/delete/${this.state._id}`)
       .then(res => {
         if (res.status === 200) {
           this.props.history.push(`/le/${this.context.state.username}`);
@@ -47,12 +73,15 @@ class NewEvent extends Component {
           } else if (context.state.loggedIn === 2) {
             return (
               <G.Wrapper>
-                {/* <G.Frame> */}
-                <EventForm
+                <AppointmentForm
+                  name={this.state.name}
+                  description={this.state.description}
+                  duration={this.state.duration}
+                  location={this.state.location}
                   handelInput={this.handelInput}
                   handleSave={this.handleSave}
+                  handleDelete={this.handleDelete}
                 />
-                {/* </G.Frame> */}
               </G.Wrapper>
             );
           }
@@ -62,5 +91,5 @@ class NewEvent extends Component {
   }
 }
 
-NewEvent.contextType = AppContext;
-export default NewEvent;
+EditAppointment.contextType = AppContext;
+export default EditAppointment;

@@ -2,18 +2,18 @@ import GoogleAuth from './GoogleAuth';
 import Navbar from './Navbar';
 import CreateAccount from './CreateAccount';
 import Loader from './Loader';
-import EventCard from './EventCard';
+import AppointmentCard from './AppointmentCard';
 import Calendar from './Calendar';
 import ATag from './ATag';
-import EventForm from './EventForm';
+import AppointmentForm from './AppointmentForm';
 
 export {
   ATag,
-  EventCard,
+  AppointmentCard,
   Loader,
   CreateAccount,
   GoogleAuth,
   Navbar,
   Calendar,
-  EventForm
+  AppointmentForm
 };

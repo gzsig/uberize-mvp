@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AppContext from '../../context/AppContext';
 import * as S from './style';
 import * as G from '../../resources/globalStyle';
-import EventCard from '../../components/EventCard/EventCard';
+import AppointmentCard from '../../components/AppointmentCard/AppointmentCard';
 import { Loader, ATag } from '../../components';
 import Consumer from '../../context/AppConsumer';
 import server from '../../resources/axios';
@@ -34,7 +34,7 @@ class Profile extends Component {
                     {context.state.appointments[0] !== 'empty' &&
                       context.state.appointments.map(appointment => {
                         return (
-                          <EventCard
+                          <AppointmentCard
                             key={appointment._id}
                             id={appointment._id}
                             title={appointment.name}
@@ -46,7 +46,7 @@ class Profile extends Component {
                         );
                       })}
                   </S.Events>
-                  <button
+                  {/* <button
                     onClick={() => {
                       console.log('here');
 
@@ -59,7 +59,7 @@ class Profile extends Component {
                     }}
                   >
                     aqui
-                  </button>
+                  </button> */}
                 </G.Frame>
               </G.Wrapper>
             );

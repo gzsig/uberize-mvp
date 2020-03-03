@@ -2,7 +2,7 @@ import Login from './Login';
 import Onboarding from './Onboarding';
 import CalendarView from './CalendarView';
 import Profile from './Profile';
-import NewEvent from './NewEvent';
-import EditEvent from './EditEvent';
+import NewAppointment from './NewAppointment';
+import EditAppointment from './EditAppointment';
 
-export { EditEvent, NewEvent, Onboarding, Login, CalendarView, Profile };
+export { EditAppointment, NewAppointment, Onboarding, Login, CalendarView, Profile };

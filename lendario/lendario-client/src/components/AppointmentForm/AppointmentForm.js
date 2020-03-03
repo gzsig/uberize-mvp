@@ -4,7 +4,7 @@ import * as G from '../../resources/globalStyle';
 // import server from '../../resources/axios';
 import AppContext from '../../context/AppContext';
 
-class EventForm extends Component {
+class AppointmentForm extends Component {
   render() {
     return (
       <S.FormCard>
@@ -57,5 +57,5 @@ class EventForm extends Component {
   }
 }
 
-EventForm.contextType = AppContext;
-export default EventForm;
+AppointmentForm.contextType = AppContext;
+export default AppointmentForm;

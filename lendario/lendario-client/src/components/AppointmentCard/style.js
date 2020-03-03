@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as colors from '../../resources/colors';
 
-const EventCard = styled.div`
+const AppointmentCard = styled.div`
   background-color: ${colors.beige};
   height: 150px;
   width: 200px;
@@ -12,41 +12,41 @@ const EventCard = styled.div`
   position: relative;
 `;
 
-const EventCardTitle = styled.div`
+const AppointmentCardTitle = styled.div`
   font-size: 16px;
   color: ${colors.primary};
   margin: 0 0 8px 0;
 `;
 
-const EventCardBody = styled.div`
+const AppointmentCardBody = styled.div`
   font-size: 12px;
   color: ${colors.primary};
 `;
 
-const EventCardLabel = styled.span`
+const AppointmentCardLabel = styled.span`
   color: ${colors.secondary};
   font-weight: bold;
 `;
 
-const EventCardInfo = styled.span`
+const AppointmentCardInfo = styled.span`
   color: ${colors.primary};
 `;
 
-const EventCardLine = styled.div`
+const AppointmentCardLine = styled.div`
   margin-bottom: 2px;
 `;
 
-const EventCardFooter = styled.div`
+const AppointmentCardFooter = styled.div`
   position: absolute;
   bottom: 2px;
 `;
 
 export {
-  EventCard,
-  EventCardTitle,
-  EventCardBody,
-  EventCardLabel,
-  EventCardInfo,
-  EventCardLine,
-  EventCardFooter
+  AppointmentCard,
+  AppointmentCardTitle,
+  AppointmentCardBody,
+  AppointmentCardLabel,
+  AppointmentCardInfo,
+  AppointmentCardLine,
+  AppointmentCardFooter
 };
