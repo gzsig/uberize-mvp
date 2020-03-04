@@ -43,7 +43,7 @@ const tokenValidator = (req, res, next) => {
       ) {
         console.log('3 - less than 5min, will reset');
         auth.setCredentials({
-          access_token: token,
+          // access_token: token,
           refresh_token: rtoken
         });
         // request a new token
