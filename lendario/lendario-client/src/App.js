@@ -8,7 +8,8 @@ import {
   Profile,
   NewAppointment,
   EditAppointment,
-  NewEvent
+  NewEvent,
+  ScheduleEvent
 } from './containers';
 import { Navbar, Loader } from './components';
 import AppProvider from './context/AppProvider';
@@ -29,7 +30,7 @@ function App() {
           component={EditAppointment}
         />
         <Route exact path='/novo/:username' component={NewEvent} />
-        <Route exact path='/novo/:username/:id' component={NewEvent} />
+        <Route exact path='/novo/:username/:id' component={ScheduleEvent} />
         <Route exact path='/teste' component={Loader} />
       </Switch>
     </AppProvider>
@@ -37,3 +38,5 @@ function App() {
 }
 
 export default App;
+
+// patient/appointment/:id

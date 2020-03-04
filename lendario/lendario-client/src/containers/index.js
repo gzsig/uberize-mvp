@@ -5,6 +5,7 @@ import Profile from './Profile';
 import NewAppointment from './NewAppointment';
 import EditAppointment from './EditAppointment';
 import NewEvent from './NewEvent';
+import ScheduleEvent from './ScheduleEvent';
 
 export {
   EditAppointment,
@@ -13,5 +14,6 @@ export {
   Onboarding,
   Login,
   CalendarView,
-  Profile
+  Profile,
+  ScheduleEvent
 };
