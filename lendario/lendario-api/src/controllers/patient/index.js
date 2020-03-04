@@ -1,3 +1,3 @@
 const { getAppointmentsPatient } = require('./getAppointmentsPatient');
-
-module.exports = { getAppointmentsPatient };
+const { createAppointmentsPatient } = require('./createAppointmentsPatient');
+module.exports = { getAppointmentsPatient, createAppointmentsPatient };

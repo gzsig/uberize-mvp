@@ -12,7 +12,8 @@ const {
   updateAppointment,
   deleteAppointment,
   createEvent,
-  getAppointmentsPatient
+  getAppointmentsPatient,
+  createAppointmentsPatient
 } = require('../controllers');
 const { authMiddleware } = require('../resources');
 
@@ -78,6 +79,7 @@ router.get('/my/appointments', authMiddleware, tokenValidator, getAppointments);
 
 // USER SEE APPOINTMENTS
 router.get('/patient/appointments/:username', getAppointmentsPatient);
+router.get('/patient/appointment/:id', createAppointmentsPatient);
 
 router.get('/teste', (req, res) => {
   res.status(200).json({ message: 'we are online' });
