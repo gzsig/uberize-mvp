@@ -2,13 +2,13 @@ const { User, Appointment } = require('../../models');
 
 const getAppointmentsPatient = (req, res) => {
   const { username } = req.params;
-  console.log('username --->', username);
+  // console.log('username --->', username);
   User.findOne({ username })
     .then(existingUser => {
-      console.log(existingUser);
+      // console.log(existingUser);
       Appointment.find({ user: existingUser._id })
         .then(appointments => {
-          console.log('appointments:', appointments);
+          // console.log('appointments:', appointments);
           res
             .status(200)
             .json({

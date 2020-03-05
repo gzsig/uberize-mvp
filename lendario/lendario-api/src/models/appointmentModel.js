@@ -6,6 +6,12 @@ const appointmentSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  userAccessToken: {
+    type: String
+  },
+  expiry_date: {
+    type: String
+  },
   name: {
     type: String,
     required: true
