@@ -3,17 +3,14 @@ import server from '../../resources/axios';
 import * as G from '../../resources/globalStyle';
 import * as S from './style';
 import { SchedualCard } from '../../components';
+import AppContext from '../../context/AppContext';
 
 class ScheduleEvent extends Component {
-  state = {
-    slots: []
-  };
   componentDidMount = () => {
     server()
-      .post(`patient/appointment/${this.props.match.params.id}`)
+      .get(`patient/appointment/${this.props.match.params.id}`)
       .then(res => {
-        console.log(res);
-        this.setState({ slots: res.data.slots });
+        this.context.updateState({ slots: res.data.slots });
       })
       .catch(err => console.log(err));
   };
@@ -23,9 +20,12 @@ class ScheduleEvent extends Component {
         <G.Frame>
           <p>ScheduleEvent</p>
           <S.Times>
-            {this.state.slots.map((event, index) => {
+            {this.context.state.slots.map((event, index) => {
               return (
                 <SchedualCard
+                  key={event.id}
+                  id={event.id}
+                  router={this.props}
                   start={new Date(event.start).toLocaleString('en-US', {
                     timeZone: 'America/Sao_Paulo'
                   })}
@@ -36,20 +36,11 @@ class ScheduleEvent extends Component {
               );
             })}
           </S.Times>
-          {/* <button
-          onClick={() => {
-            server()
-              .post(`patient/appointment/${this.props.match.params.id}`)
-              .then(res => console.log(res))
-              .catch(err => console.log(err));
-          }}
-        >
-          click me
-        </button> */}
         </G.Frame>
       </G.Wrapper>
     );
   }
 }
 
+ScheduleEvent.contextType = AppContext;
 export default ScheduleEvent;

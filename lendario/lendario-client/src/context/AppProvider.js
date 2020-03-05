@@ -10,7 +10,8 @@ class AppProvider extends Component {
     picture: '',
     given_name: '',
     family_name: '',
-    force_reload: null
+    force_reload: null,
+    slots: []
   };
 
   validateUser = () => {
@@ -69,10 +70,11 @@ class AppProvider extends Component {
       .then(res => {
         // console.log(res.data);
         this.setState({ appointments: res.data.appointments });
-      }).catch(err => {
-        // console.log(err)
-        this.setState({ appointments: ['empty'] })
       })
+      .catch(err => {
+        // console.log(err)
+        this.setState({ appointments: ['empty'] });
+      });
   };
 
   logout = () => {
@@ -83,7 +85,7 @@ class AppProvider extends Component {
   forceReload = (time, vu) => {
     let timeleft = parseInt(time);
     console.log((timeleft + 285) * -1000);
-    let once = setTimeout(function () {
+    let once = setTimeout(function() {
       vu.validateUser();
       clearTimeout(once);
     }, (timeleft + 285) * -1000);

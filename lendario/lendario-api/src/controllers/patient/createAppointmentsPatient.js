@@ -62,6 +62,7 @@ const OrganizeSlot = freeSlots => {
         console.log('entrei no while');
 
         slots.push({
+          id: '_' + Math.random().toString(36).substr(2, 9),
           start: new Date(freeSlots[i].start).setHours(
             new Date(freeSlots[i].start).getHours() + j
           ),
