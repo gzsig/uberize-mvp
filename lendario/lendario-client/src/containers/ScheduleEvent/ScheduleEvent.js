@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import server from '../../resources/axios';
+import * as G from '../../resources/globalStyle';
+import * as S from './style';
+import { SchedualCard } from '../../components';
 
 class ScheduleEvent extends Component {
   state = {
@@ -16,21 +19,24 @@ class ScheduleEvent extends Component {
   };
   render() {
     return (
-      <div>
-        <p>ScheduleEvent</p>
-        {this.state.slots.map((event, index) => {
-          return (
-            <div>
-              {new Date(event.start).toLocaleString('en-US', {
-                timeZone: 'America/Sao_Paulo'
-              })}
-              {new Date(event.end).toLocaleString('en-US', {
-                timeZone: 'America/Sao_Paulo'
-              })}
-            </div>
-          );
-        })}
-        {/* <button
+      <G.Wrapper>
+        <G.Frame>
+          <p>ScheduleEvent</p>
+          <S.Times>
+            {this.state.slots.map((event, index) => {
+              return (
+                <SchedualCard
+                  start={new Date(event.start).toLocaleString('en-US', {
+                    timeZone: 'America/Sao_Paulo'
+                  })}
+                  end={new Date(event.end).toLocaleString('en-US', {
+                    timeZone: 'America/Sao_Paulo'
+                  })}
+                />
+              );
+            })}
+          </S.Times>
+          {/* <button
           onClick={() => {
             server()
               .post(`patient/appointment/${this.props.match.params.id}`)
@@ -40,7 +46,8 @@ class ScheduleEvent extends Component {
         >
           click me
         </button> */}
-      </div>
+        </G.Frame>
+      </G.Wrapper>
     );
   }
 }

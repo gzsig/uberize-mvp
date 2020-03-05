@@ -6,6 +6,7 @@ import AppointmentCard from './AppointmentCard';
 import Calendar from './Calendar';
 import ATag from './ATag';
 import AppointmentForm from './AppointmentForm';
+import SchedualCard from './SchedualCard';
 
 export {
   ATag,
@@ -15,5 +16,6 @@ export {
   GoogleAuth,
   Navbar,
   Calendar,
-  AppointmentForm
+  AppointmentForm,
+  SchedualCard
 };
