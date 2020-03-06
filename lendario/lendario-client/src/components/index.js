@@ -7,6 +7,7 @@ import Calendar from './Calendar';
 import ATag from './ATag';
 import AppointmentForm from './AppointmentForm';
 import SchedualCard from './SchedualCard';
+import SchedualConfirm from './SchedualConfirm';
 
 export {
   ATag,
@@ -17,5 +18,6 @@ export {
   Navbar,
   Calendar,
   AppointmentForm,
-  SchedualCard
+  SchedualCard,
+  SchedualConfirm
 };

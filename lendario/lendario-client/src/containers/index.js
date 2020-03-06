@@ -6,6 +6,7 @@ import NewAppointment from './NewAppointment';
 import EditAppointment from './EditAppointment';
 import NewEvent from './NewEvent';
 import ScheduleEvent from './ScheduleEvent';
+import ScheduleEventConfirm from './ScheduleEventConfirm';
 
 export {
   EditAppointment,
@@ -15,5 +16,6 @@ export {
   Login,
   CalendarView,
   Profile,
-  ScheduleEvent
+  ScheduleEvent,
+  ScheduleEventConfirm
 };
