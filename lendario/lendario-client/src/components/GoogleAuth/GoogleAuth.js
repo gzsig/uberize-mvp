@@ -5,7 +5,7 @@ import appContext from '../../context/AppContext';
 
 class GoogleAuth extends Component {
   handleLogInClick = () => {
-    window.location.assign('http://localhost:3001/auth/google');
+    window.location.assign('https://api-lendario.herokuapp.com/auth/google');
   };
 
   render() {

@@ -26,10 +26,11 @@ const Day = styled.div`
   width: 14.28%;
   display: flex;
   flex-direction: column;
-  ${'' /* justify-content: center; */}
   align-items: center;
   color: ${colors.secondary};
   height: 80px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 
 const DayHead = styled.div`
@@ -47,6 +48,10 @@ const Event = styled.div`
   text-align: center;
   color: ${colors.primary};
   font-size: 12px;
+
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 export { Button, Body, Day, DayHead, Header, Event };
