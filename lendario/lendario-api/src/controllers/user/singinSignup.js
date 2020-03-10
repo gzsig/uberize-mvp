@@ -1,3 +1,5 @@
+require('dotenv').config();
+const { FRONTEND_URL } = process.env;
 let jwt = require('jsonwebtoken');
 const { User } = require('../../models');
 
@@ -20,7 +22,7 @@ const singinSignup = (req, res) => {
         { expiresIn: '356d' }
       );
       console.log('existooo');
-      res.redirect(`http://localhost:3000?token=${token}`);
+      res.redirect(`${FRONTEND_URL}?token=${token}`); //mexi
     } else {
       User.create({
         email,
@@ -39,16 +41,16 @@ const singinSignup = (req, res) => {
             { expiresIn: '356d' }
           );
           console.log('naooooo existooo');
-          res.redirect(`http://localhost:3000?token=${token}`);
+          res.redirect(`${FRONTEND_URL}?token=${token}`); //mexi
         })
         .catch(err => {
           console.log('error regestering user: ', err);
-          res.redirect(`http://localhost:3000?err=${err}`);
+          res.redirect(`${FRONTEND_URL}?err=${err}`); //mexi
         });
     }
   });
-}
+};
 
 module.exports = {
-  singinSignup,
-}
+  singinSignup
+};

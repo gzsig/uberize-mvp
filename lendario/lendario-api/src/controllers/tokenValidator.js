@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, FRONTEND_URL } = process.env;
 const { User } = require('../models/');
 const { google } = require('googleapis');
 const moment = require('moment');
@@ -7,7 +7,7 @@ const moment = require('moment');
 const googleConfig = {
   clientId: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  redirect: 'http://localhost:3000/google-auth'
+  redirect: `${FRONTEND_URL}/google-auth` //mexi
 };
 
 const createConnection = () => {

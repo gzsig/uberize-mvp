@@ -1,9 +1,9 @@
 require('dotenv').config();
+const { PORT, FRONTEND_URL, BACKEND_URL } = process.env
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require('cors')
 const { passport } = require("./config/passport");
-const { PORT } = process.env
 const { router } = require('./routes');
 const session = require('express-session');
 const connectMongo = require('connect-mongo');
@@ -31,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: FRONTEND_URL, //mexi
   methods: 'GET, POST, PATCH, DELETE',
   credentials: true,
 }))
@@ -39,7 +39,7 @@ app.use(cors({
 
 // Syncing our database and logging a message to the user upon success
 app.listen(PORT, function () {
-  console.log(`==> 🌎  Listening on port ${PORT}. Visit http://localhost:${PORT} in your browser.`);
+  console.log(`==> 🌎  Listening on port ${PORT}. Visit ${BACKEND_URL} in your browser.`);
 });
 
 app.use('/', router);
