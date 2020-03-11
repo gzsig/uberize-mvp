@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import AppContext from '../../context/AppContext';
 import server from '../../resources/axios';
+import * as G from '../../resources/globalStyle';
 
 class SchedualConfirm extends Component {
   state = {
@@ -41,17 +42,29 @@ class SchedualConfirm extends Component {
 
     return (
       <Fragment>
+
+        <G.FormCard>
         {this.state.pickedDate && (
           <div>
-            {new Date(this.state.pickedDate.start).toLocaleString('en-US', {
+            <p>{new Date(this.state.pickedDate.start).toLocaleString('en-US', {
               timeZone: 'America/Sao_Paulo'
-            })}
+            })}</p>
             {new Date(this.state.pickedDate.end).toLocaleString('en-US', {
               timeZone: 'America/Sao_Paulo'
             })}
           </div>
         )}
-        <button onClick={this.createEvent}></button>
+          <div>
+            <G.Label>Nome</G.Label>
+            <G.FiledM type='text' name='name' autoComplete='off' />
+          </div>
+          <div>
+            <G.Label>Email</G.Label>
+            <G.FiledM type='text' name='name' autoComplete='off' />
+          </div>
+        <G.Button onClick={this.createEvent}>Salvar</G.Button>
+        </G.FormCard>
+
       </Fragment>
     );
   }

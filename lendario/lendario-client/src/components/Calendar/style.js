@@ -31,6 +31,7 @@ const Day = styled.div`
   height: 80px;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: 4px;
 `;
 
 const DayHead = styled.div`
@@ -48,10 +49,10 @@ const Event = styled.div`
   text-align: center;
   color: ${colors.primary};
   font-size: 12px;
-
   white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  margin: 1px 0;
+  ${'' /* overflow-x: hidden; */}
+  ${'' /* text-overflow: ellipsis; */}
 `;
 
 export { Button, Body, Day, DayHead, Header, Event };

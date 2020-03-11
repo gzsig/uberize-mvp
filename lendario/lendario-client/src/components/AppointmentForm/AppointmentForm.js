@@ -7,7 +7,7 @@ import AppContext from '../../context/AppContext';
 class AppointmentForm extends Component {
   render() {
     return (
-      <S.FormCard>
+      <G.FormCard>
         <div>
           <G.Label>Nome</G.Label>
           <G.FiledM
@@ -52,7 +52,7 @@ class AppointmentForm extends Component {
         {this.props.handleDelete && (
           <button onClick={this.props.handleDelete}>del</button>
         )}
-      </S.FormCard>
+      </G.FormCard>
     );
   }
 }

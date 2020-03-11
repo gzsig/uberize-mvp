@@ -6,9 +6,9 @@ class ScheduleEventConfirm extends Component {
   render() {
     return (
       <G.Wrapper>
-        <G.Frame>
+        {/* <G.Frame> */}
           <SchedualConfirm router={this.props} />
-        </G.Frame>
+        {/* </G.Frame> */}
       </G.Wrapper>
     );
   }
