@@ -6,7 +6,9 @@ import * as G from '../../resources/globalStyle';
 class SchedualConfirm extends Component {
   state = {
     username: '',
-    idappointment: ''
+    idappointment: '',
+    pemail:'',
+    pname: ''
   };
   componentDidMount = () => {
     const { username, idappointment, idtime } = this.props.router.match.params;
@@ -21,6 +23,13 @@ class SchedualConfirm extends Component {
       idappointment: idappointment
     });
   };
+
+  handelInput = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  
   createEvent = () => {
     server()
       .post('/google/cal/event/create', {
@@ -28,8 +37,8 @@ class SchedualConfirm extends Component {
         username: this.state.username,
         startTime: this.state.pickedDate.start,
         endTime: this.state.pickedDate.end,
-        pemail: 'gaazsig@gmail.com',
-        pname: 'Coe'
+        pemail: this.state.pemail,
+        pname: this.state.pname
       })
       .then(res => console.log(res))
       .catch(err => {
@@ -56,11 +65,11 @@ class SchedualConfirm extends Component {
         )}
           <div>
             <G.Label>Nome</G.Label>
-            <G.FiledM type='text' name='name' autoComplete='off' />
+            <G.FiledM type='text' name='pname' autoComplete='off' onChange={this.handelInput} />
           </div>
           <div>
             <G.Label>Email</G.Label>
-            <G.FiledM type='text' name='name' autoComplete='off' />
+            <G.FiledM type='text' name='pemail' autoComplete='off' onChange={this.handelInput} />
           </div>
         <G.Button onClick={this.createEvent}>Salvar</G.Button>
         </G.FormCard>
