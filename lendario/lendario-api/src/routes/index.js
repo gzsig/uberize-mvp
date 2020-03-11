@@ -51,8 +51,6 @@ router.get(
 );
 router.post(
   '/google/cal/event/create',
-  // authMiddleware,
-  // tokenValidator,
   createEvent
 );
 
