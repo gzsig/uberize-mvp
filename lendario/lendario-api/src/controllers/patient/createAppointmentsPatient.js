@@ -25,49 +25,82 @@ const free = busy => {
   let startDate = new Date();
   let endDate = new Date();
   endDate.setMonth(startDate.getMonth() + 1);
+  console.log('busy', busy);
+
+  if (busy.length === 0) {
+    console.log('aquiii');
+    freeSlots.push({ start: startDate, end: endDate });
+    return freeSlots;
+  }
 
   for (let i = 0; i < busy.length; i++) {
     if (i === 0 && startDate < busy[i].start) {
-      freeSlots.push({ start: startDate, end: busy[i].start });
+      freeSlots.push({
+        start: new Date(startDate).setMinutes(
+          Math.ceil(new Date(startDate).getMinutes() / 5) * 5
+        ),
+        end: busy[i].start
+      });
     } else if (i === 0) {
       startDate = busy[i].end;
+      const endEvent = busy.length === i + 1 ? endDate : busy[i + 1].start;
+      freeSlots.push({
+        start: new Date(startDate).setMinutes(
+          Math.ceil(new Date(startDate).getMinutes() / 5) * 5
+        ),
+        end: endEvent
+      });
     } else if (busy[i - 1].end < busy[i].start) {
-      freeSlots.push({ start: busy[i - 1].end, end: busy[i].start });
+      freeSlots.push({
+        start: new Date(busy[i - 1].end).setMinutes(
+          Math.ceil(new Date(busy[i - 1].end).getMinutes() / 5) * 5
+        ),
+        end: busy[i].start
+      });
     }
     if (busy.length === i + 1 && busy[i].end < endDate) {
-      freeSlots.push({ start: busy[i].end, end: endDate });
+      freeSlots.push({
+        start: new Date(busy[i].end).setMinutes(
+          Math.ceil(new Date(busy[i].end).getMinutes() / 5) * 5
+        ),
+        end: endDate
+      });
     }
   }
   return freeSlots;
 };
 
-
-
 const OrganizeSlot = freeSlots => {
   let slots = [];
-  let slotSize = 1;
+  let slotSize = 60;
   for (let i = 0; i < freeSlots.length; i++) {
     console.log('for:', i);
     let j = 0;
-    console.log('start', new Date(freeSlots[i].start).getHours());
-    console.log('end', new Date(freeSlots[i].end).getHours());
+    console.log('start', new Date(freeSlots[i].start));
+    console.log('end', new Date(freeSlots[i].end));
     if (
-      new Date(freeSlots[i].start).getHours() + slotSize <
-      new Date(freeSlots[i].end).getHours()
+      new Date(freeSlots[i].start).setMinutes(
+        new Date(freeSlots[i].start).getMinutes() + slotSize
+      ) < new Date(freeSlots[i].end)
     ) {
       while (
-        new Date(freeSlots[i].start).getHours() + j <
-        new Date(freeSlots[i].end).getHours()
+        new Date(freeSlots[i].start).setMinutes(
+          new Date(freeSlots[i].start).getMinutes() + j
+        ) < new Date(freeSlots[i].end)
       ) {
         console.log('entrei no while');
 
         slots.push({
-          id: '_' + Math.random().toString(36).substr(2, 9),
-          start: new Date(freeSlots[i].start).setHours(
-            new Date(freeSlots[i].start).getHours() + j
+          id:
+            '_' +
+            Math.random()
+              .toString(36)
+              .substr(2, 9),
+          start: new Date(freeSlots[i].start).setMinutes(
+            new Date(freeSlots[i].start).getMinutes() + j
           ),
-          end: new Date(freeSlots[i].start).setHours(
-            new Date(freeSlots[i].start).getHours() + j + slotSize
+          end: new Date(freeSlots[i].start).setMinutes(
+            new Date(freeSlots[i].start).getMinutes() + j + slotSize
           )
         });
         j += slotSize;
@@ -76,8 +109,6 @@ const OrganizeSlot = freeSlots => {
   }
   return slots;
 };
-
-
 
 const createAppointmentsPatient = (req, res) => {
   const auth = createConnection();
@@ -134,7 +165,8 @@ const createAppointmentsPatient = (req, res) => {
           let startDate = new Date();
           let nextDay = startDate.getDate() + 30;
           let month = startDate.getMonth();
-          let endDate = new Date(2020, month, nextDay);
+          let year = startDate.getFullYear();
+          let endDate = new Date(year, month, nextDay);
 
           google_calendar.freebusy.query(
             {
@@ -154,10 +186,9 @@ const createAppointmentsPatient = (req, res) => {
             function(err, data) {
               if (err) return console.log(err);
               // console.log('calendar data: =====>', data.calendars.primary);
-              let freeTime = free(data.calendars.primary.busy)
+              let freeTime = free(data.calendars.primary.busy);
               let slots = OrganizeSlot(freeTime);
-              res.status(200).json({slots});
-
+              res.status(200).json({ slots });
             }
           );
         })
