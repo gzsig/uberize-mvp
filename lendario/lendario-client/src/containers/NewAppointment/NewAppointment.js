@@ -24,18 +24,29 @@ class NewAppointment extends Component {
   };
 
   handleSave = e => {
-    const calAppointment = this.state;
-    console.log(calAppointment);
-    server(window.localStorage.crpt)
-      .post('/my/appointment/new', { calAppointment })
-      .then(res => {
-        if (res.status === 200) {
-          this.props.history.push(`/le/${this.context.state.username}`);
-        } else {
-          alert(res.data.statusText);
-        }
-      })
-      .catch(err => alert(err));
+    const { name, description, duration, location } = this.state;
+    if (
+      name == '' ||
+      description == '' ||
+      duration == '' ||
+      duration == 0 ||
+      location == ''
+    ) {
+      alert('Todos os campos precisam ser preenchidos');
+    } else {
+      const calAppointment = this.state;
+      console.log(calAppointment);
+      server(window.localStorage.crpt)
+        .post('/my/appointment/new', { calAppointment })
+        .then(res => {
+          if (res.status === 200) {
+            this.props.history.push(`/le/${this.context.state.username}`);
+          } else {
+            alert(res.data.statusText);
+          }
+        })
+        .catch(err => alert(err));
+    }
   };
 
   render() {
@@ -47,12 +58,11 @@ class NewAppointment extends Component {
           } else if (context.state.loggedIn === 2) {
             return (
               <G.Wrapper>
-                {/* <G.Frame> */}
                 <AppointmentForm
                   handelInput={this.handelInput}
                   handleSave={this.handleSave}
+                  handleCancel={()=>{this.props.history.push('/')}}
                 />
-                {/* </G.Frame> */}
               </G.Wrapper>
             );
           }

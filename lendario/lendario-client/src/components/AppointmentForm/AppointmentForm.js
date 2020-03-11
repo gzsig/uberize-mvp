@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as S from './style';
 import * as G from '../../resources/globalStyle';
-// import server from '../../resources/axios';
 import AppContext from '../../context/AppContext';
 
 class AppointmentForm extends Component {
@@ -48,10 +47,15 @@ class AppointmentForm extends Component {
             value={this.props.location}
           />
         </div>
+        <S.saveOrCancel>
         <G.Button onClick={this.props.handleSave}>Salvar</G.Button>
         {this.props.handleDelete && (
-          <button onClick={this.props.handleDelete}>del</button>
+          <a onClick={this.props.handleDelete}>Apagar</a>
         )}
+        {this.props.handleCancel && (
+          <a onClick={this.props.handleCancel}>Cancelar</a>
+        )}
+        </S.saveOrCancel>
       </G.FormCard>
     );
   }
