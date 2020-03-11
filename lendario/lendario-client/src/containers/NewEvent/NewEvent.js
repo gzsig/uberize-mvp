@@ -6,7 +6,7 @@ import { AppointmentCard, Loader } from '../../components';
 class NewEvent extends Component {
   componentDidMount = () => {
     server()
-      .get(`patient/appointments/${this.props.match.params.username}`)
+      .get(`/patient/appointments/${this.props.match.params.username}`)
       .then(res => {
         this.setState({
           appointments: res.data.appointments

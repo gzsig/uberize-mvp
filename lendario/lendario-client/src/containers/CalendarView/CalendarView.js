@@ -16,7 +16,7 @@ class CalendarView extends Component {
 
   loadCalendarEvents = () => {
     server(window.localStorage.crpt)
-      .get('google/cal/events')
+      .get('/google/cal/events')
       .then(res => {
         this.setState({ events: res.data });
         // console.log(this.state);

@@ -11,7 +11,7 @@ class CreateAccount extends Component {
     event.preventDefault();
     console.log(this.state.username);
     server(window.localStorage.crpt)
-      .post('onboarding', {
+      .post('/onboarding', {
         email: this.props.email,
         username: this.state.username
       })

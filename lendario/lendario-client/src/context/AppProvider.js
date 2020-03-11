@@ -15,12 +15,12 @@ class AppProvider extends Component {
   };
 
   validateUser = () => {
-    this.state.given_name === '' && this.setState({ loggedIn: 0 });
+    // this.state.given_name === '' && this.setState({ loggedIn: 0 });
     const { crpt } = window.localStorage;
     // console.log('validate user crpt:', crpt);
 
     return server(window.localStorage.crpt)
-      .post('refresh', { crpt })
+      .post('/refresh', { crpt })
       .then(res => {
         // console.log('res', res);
         if (res.data.valid) {
@@ -33,6 +33,9 @@ class AppProvider extends Component {
             username: res.data.username,
             force_reload: res.data.force_reload
           });
+          if (res.data.username == "undefined" && window.location.pathname !=='/le/onboarding') {
+            window.location.assign('/le/onboarding');
+          }
           this.state.force_reload &&
             this.forceReload(this.state.force_reload, this);
         } else {
@@ -66,7 +69,7 @@ class AppProvider extends Component {
 
   getAppointments = () => {
     return server(window.localStorage.crpt)
-      .get('my/appointments')
+      .get('/my/appointments')
       .then(res => {
         // console.log(res.data);
         this.setState({ appointments: res.data.appointments });

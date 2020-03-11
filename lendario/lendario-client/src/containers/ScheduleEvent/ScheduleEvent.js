@@ -8,7 +8,7 @@ import AppContext from '../../context/AppContext';
 class ScheduleEvent extends Component {
   componentDidMount = () => {
     server()
-      .get(`patient/appointment/${this.props.match.params.id}`)
+      .get(`/patient/appointment/${this.props.match.params.id}`)
       .then(res => {
         this.context.updateState({ slots: res.data.slots });
       })
