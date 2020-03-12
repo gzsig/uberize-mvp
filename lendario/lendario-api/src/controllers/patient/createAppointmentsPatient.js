@@ -25,59 +25,74 @@ const free = busy => {
   let startDate = new Date();
   let endDate = new Date();
   endDate.setMonth(startDate.getMonth() + 1);
-  console.log('busy', busy);
 
   if (busy.length === 0) {
-    console.log('aquiii');
+    // console.log('aquiii');
     freeSlots.push({ start: startDate, end: endDate });
     return freeSlots;
+  } else {
+    for (let i = 0; i < busy.length; i++) {
+      if (i === 0 && startDate < busy[i].start) {
+        freeSlots.push({
+          start: new Date(startDate).setMinutes(
+            Math.ceil(new Date(startDate).getMinutes() / 5) * 5
+          ),
+          end: busy[i].start
+        });
+      } else if (i === 0) {
+        startDate = busy[i].end;
+        const endEvent = busy.length === i + 1 ? endDate : busy[i + 1].start;
+        freeSlots.push({
+          start: new Date(startDate).setMinutes(
+            Math.ceil(new Date(startDate).getMinutes() / 5) * 5
+          ),
+          end: endEvent
+        });
+      } else if (busy[i - 1].end < busy[i].start) {
+        freeSlots.push({
+          start: new Date(busy[i - 1].end).setMinutes(
+            Math.ceil(new Date(busy[i - 1].end).getMinutes() / 5) * 5
+          ),
+          end: busy[i].start
+        });
+      }
+      // if (busy.length === i + 1 && busy[i].end < endDate) {
+      //   freeSlots.push({
+      //     start: new Date(busy[i].end).setMinutes(
+      //       Math.ceil(new Date(busy[i].end).getMinutes() / 5) * 5
+      //     ),
+      //     end: endDate
+      //   });
+      // }
+    }
+    if (freeSlots[0].start === freeSlots[1].start) {
+      freeSlots.shift();
+    }
   }
 
-  for (let i = 0; i < busy.length; i++) {
-    if (i === 0 && startDate < busy[i].start) {
-      freeSlots.push({
-        start: new Date(startDate).setMinutes(
-          Math.ceil(new Date(startDate).getMinutes() / 5) * 5
-        ),
-        end: busy[i].start
-      });
-    } else if (i === 0) {
-      startDate = busy[i].end;
-      const endEvent = busy.length === i + 1 ? endDate : busy[i + 1].start;
-      freeSlots.push({
-        start: new Date(startDate).setMinutes(
-          Math.ceil(new Date(startDate).getMinutes() / 5) * 5
-        ),
-        end: endEvent
-      });
-    } else if (busy[i - 1].end < busy[i].start) {
-      freeSlots.push({
-        start: new Date(busy[i - 1].end).setMinutes(
-          Math.ceil(new Date(busy[i - 1].end).getMinutes() / 5) * 5
-        ),
-        end: busy[i].start
-      });
-    }
-    if (busy.length === i + 1 && busy[i].end < endDate) {
-      freeSlots.push({
-        start: new Date(busy[i].end).setMinutes(
-          Math.ceil(new Date(busy[i].end).getMinutes() / 5) * 5
-        ),
-        end: endDate
-      });
-    }
-  }
   return freeSlots;
 };
 
-const OrganizeSlot = freeSlots => {
+const OrganizeSlot = (freeSlots, slotSize) => {
+  // console.log(freeSlots);
+
   let slots = [];
-  let slotSize = 60;
+  slotSize = Number(slotSize);
   for (let i = 0; i < freeSlots.length; i++) {
-    console.log('for:', i);
+    // console.log('for:', i);
     let j = 0;
-    console.log('start', new Date(freeSlots[i].start));
-    console.log('end', new Date(freeSlots[i].end));
+    // console.log(
+    //   'start',
+    //   new Date(freeSlots[i].start).toLocaleString('en-US', {
+    //     timeZone: 'America/Sao_Paulo'
+    //   })
+    // );
+    // console.log(
+    //   'end',
+    //   new Date(freeSlots[i].end).toLocaleString('en-US', {
+    //     timeZone: 'America/Sao_Paulo'
+    //   })
+    // );
     if (
       new Date(freeSlots[i].start).setMinutes(
         new Date(freeSlots[i].start).getMinutes() + slotSize
@@ -88,7 +103,7 @@ const OrganizeSlot = freeSlots => {
           new Date(freeSlots[i].start).getMinutes() + j
         ) < new Date(freeSlots[i].end)
       ) {
-        console.log('entrei no while');
+        // console.log('entrei no while');
 
         slots.push({
           id:
@@ -107,6 +122,8 @@ const OrganizeSlot = freeSlots => {
       }
     }
   }
+  // console.log(slots);
+
   return slots;
 };
 
@@ -114,22 +131,22 @@ const createAppointmentsPatient = (req, res) => {
   const auth = createConnection();
   Appointment.findById(req.params.id)
     .then(existingAppointment => {
-      console.log(existingAppointment);
+      // console.log(existingAppointment);
       User.findById(existingAppointment.user)
         .then(existingUser => {
-          console.log('USER:', existingUser);
+          // console.log('USER:', existingUser);
           const rtoken = existingUser.refreshToken;
           auth.setCredentials({
             // access_token: token,
             refresh_token: rtoken
           });
 
-          console.log(
-            'MOMENT:',
-            moment()
-              .subtract(existingAppointment.expiry_date)
-              .format('X')
-          );
+          // console.log(
+          //   'MOMENT:',
+          //   moment()
+          //     .subtract(existingAppointment.expiry_date)
+          //     .format('X')
+          // );
 
           if (
             moment()
@@ -139,7 +156,7 @@ const createAppointmentsPatient = (req, res) => {
             // request a new token
             auth.refreshAccessToken(function(err, tokens) {
               if (err) return next(err);
-              console.log('success on new TOKEN not loggedin');
+              // console.log('success on new TOKEN not loggedin');
               //save the new token and expiry_date
               Appointment.findOneAndUpdate(
                 { _id: existingAppointment._id },
@@ -153,7 +170,7 @@ const createAppointmentsPatient = (req, res) => {
                 },
                 function(err, doc) {
                   if (err) return next(err);
-                  console.log('saved new TOKENS not loggedin');
+                  // console.log('saved new TOKENS not loggedin');
                 }
               );
             });
@@ -187,7 +204,7 @@ const createAppointmentsPatient = (req, res) => {
               if (err) return console.log(err);
               // console.log('calendar data: =====>', data.calendars.primary);
               let freeTime = free(data.calendars.primary.busy);
-              let slots = OrganizeSlot(freeTime);
+              let slots = OrganizeSlot(freeTime, existingAppointment.duration);
               res.status(200).json({ slots });
             }
           );
