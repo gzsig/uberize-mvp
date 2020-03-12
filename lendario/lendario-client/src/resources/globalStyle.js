@@ -79,12 +79,12 @@ const Button = styled.a`
   font-size: 16px;
   line-height: 32px;
   margin: 2px 0;
-  max-width: 150px;
+  max-width: 270px;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0;
   transition: all 280ms ease-in-out;
-  width: 100%;
+  width: fit-content;
   text-align: center;
   &:hover {
     margin: 0;
