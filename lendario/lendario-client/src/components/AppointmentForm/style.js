@@ -11,4 +11,8 @@ const saveOrCancel = styled.div`
   }
 `;
 
-export { saveOrCancel };
+const Min = styled.span`
+font-size:10px
+`
+
+export { saveOrCancel, Min };

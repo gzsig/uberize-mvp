@@ -29,7 +29,7 @@ class Profile extends Component {
             return (
               <G.Wrapper>
                 <G.Frame>
-                  <p>Meus horarios</p>
+                  <G.PgTitle>Meus Horarios</G.PgTitle>
                   <G.Events>
                     {context.state.appointments[0] !== 'empty' &&
                       context.state.appointments.map(appointment => {

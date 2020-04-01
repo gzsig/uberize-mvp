@@ -26,7 +26,7 @@ class NewEvent extends Component {
         ) : (
           <G.Wrapper>
             <G.Frame>
-              <p>evento</p>
+              <G.PgTitle>O que deseja agendar?</G.PgTitle>
               <G.Events>
                 {this.state.appointments.map(appointment => {
                   return (

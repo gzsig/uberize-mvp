@@ -57,7 +57,7 @@ const FiledL = styled.input`
 `;
 const Label = styled.label`
   color: ${colors.secondary};
-  width: 100px;
+  width: 120px;
   text-transform: uppercase;
   display: inline-block;
   text-align: right;
@@ -80,7 +80,7 @@ const Button = styled.a`
   line-height: 32px;
   margin: 2px 0;
   max-width: 270px;
-  text-decoration: none;
+  text-decoration: none !important;
   text-transform: uppercase;
   letter-spacing: 0;
   transition: all 280ms ease-in-out;
@@ -91,7 +91,7 @@ const Button = styled.a`
     border-top: 2px solid;
     border-bottom: 2px solid;
     border-color: ${colors.secondary};
-    text-decoration: none;
+    text-decoration: none !important;
     letter-spacing: 5px;
   }
 `;
@@ -118,6 +118,15 @@ const FormCard = styled.div`
   position: relative;
 `;
 
+const PgTitle = styled.div`
+color: ${colors.primary};
+text-transform: capitalize;
+margin: 24px 12px;
+font-size: 28px;
+font-weight:600;
+font-family: 'Montserrat Alternates', sans-serif;
+`
+
 export {
   BeigeCard,
   Button,
@@ -128,5 +137,6 @@ export {
   Frame,
   Wrapper,
   Events,
-  FormCard
+  FormCard,
+  PgTitle
 };

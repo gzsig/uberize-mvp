@@ -28,7 +28,7 @@ class AppointmentForm extends Component {
           />
         </div>
         <div>
-          <G.Label>Duração </G.Label>
+          <G.Label>Duração <S.Min>(min)</S.Min></G.Label>
           <G.FiledS
             type='number'
             name='duration'

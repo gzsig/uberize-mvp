@@ -27,7 +27,7 @@ class CalendarView extends Component {
     return (
       <G.Wrapper>
         <G.Frame>
-          Horários esse mês
+          <G.PgTitle>Horários esse mês</G.PgTitle>
           {this.state.events.length ? (
             <Calendar events={this.state.events} />
           ) : (

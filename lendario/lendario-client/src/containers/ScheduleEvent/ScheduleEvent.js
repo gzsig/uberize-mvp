@@ -81,7 +81,7 @@ class ScheduleEvent extends Component {
         {this.context.state.slots.length ? (
           <G.Wrapper>
             <G.Frame>
-              <p>ScheduleEvent</p>
+              <G.PgTitle>Agendar Horário</G.PgTitle>
               <S.Times>
                 {this.context.state.slots.map((event, index, elements) => {
                   return (

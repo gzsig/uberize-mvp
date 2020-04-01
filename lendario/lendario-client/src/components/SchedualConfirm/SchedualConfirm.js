@@ -2,12 +2,13 @@ import React, { Component, Fragment } from 'react';
 import AppContext from '../../context/AppContext';
 import server from '../../resources/axios';
 import * as G from '../../resources/globalStyle';
+import * as S from './style'
 
 class SchedualConfirm extends Component {
   state = {
     username: '',
     idappointment: '',
-    pemail:'',
+    pemail: '',
     pname: ''
   };
   componentDidMount = () => {
@@ -29,7 +30,7 @@ class SchedualConfirm extends Component {
       [e.target.name]: e.target.value
     });
   };
-  
+
   createEvent = () => {
     server()
       .post('/google/cal/event/create', {
@@ -53,25 +54,31 @@ class SchedualConfirm extends Component {
       <Fragment>
 
         <G.FormCard>
-        {this.state.pickedDate && (
-          <div>
-            <p>{new Date(this.state.pickedDate.start).toLocaleString('en-US', {
-              timeZone: 'America/Sao_Paulo'
-            })}</p>
-            {new Date(this.state.pickedDate.end).toLocaleString('en-US', {
-              timeZone: 'America/Sao_Paulo'
-            })}
-          </div>
-        )}
+          {this.state.pickedDate && (
+            <S.Header>
+              Você escolheu a data{" "}
+              <S.ConfirmDate>{new Date(this.state.pickedDate.start).toLocaleString('pt-BR', {
+                timeZone: 'America/Sao_Paulo'
+              }).split(" ")[0]}</S.ConfirmDate>
+              {" "}das{" "}
+              <span>{new Date(this.state.pickedDate.start).toLocaleString('pt-BR', {
+                timeZone: 'America/Sao_Paulo'
+              }).split(" ")[1]}</span>
+              {" "}as{" "}
+              <span>{new Date(this.state.pickedDate.end).toLocaleString('pt-BR', {
+                timeZone: 'America/Sao_Paulo'
+              }).split(" ")[1]}</span>
+            </S.Header>
+          )}
           <div>
             <G.Label>Nome</G.Label>
             <G.FiledM type='text' name='pname' autoComplete='off' onChange={this.handelInput} />
           </div>
           <div>
             <G.Label>Email</G.Label>
-            <G.FiledM type='text' name='pemail' autoComplete='off' onChange={this.handelInput} />
+            <G.FiledM type='email' name='pemail' autoComplete='off' onChange={this.handelInput} />
           </div>
-        <G.Button onClick={this.createEvent}>Salvar</G.Button>
+          <G.Button onClick={this.createEvent}>Confirmar</G.Button>
         </G.FormCard>
 
       </Fragment>
