@@ -1,43 +1,39 @@
-import React, { Component } from 'react';
-import * as S from './style';
-import ATag from '../ATag';
+import React, { Component, Fragment } from "react";
+import * as S from "./style";
+import ATag from "../ATag";
+import { Card, Icon } from "semantic-ui-react";
 // import { Link } from 'react-router-dom';
 
 class AppointmentCard extends Component {
   render() {
     return (
-      <S.AppointmentCard>
-        <S.AppointmentCardTitle>{this.props.title}</S.AppointmentCardTitle>
-        <S.AppointmentCardBody>
-          <S.AppointmentCardLine>
-            <S.AppointmentCardLabel> Descricão: </S.AppointmentCardLabel>
-            <S.AppointmentCardInfo>
-              {this.props.description}
-            </S.AppointmentCardInfo>
-          </S.AppointmentCardLine>
-          <S.AppointmentCardLine>
-            <S.AppointmentCardLabel>Duração: </S.AppointmentCardLabel>
-            <S.AppointmentCardInfo>{this.props.duration}</S.AppointmentCardInfo>
-          </S.AppointmentCardLine>
-          <S.AppointmentCardLine>
-            <S.AppointmentCardLabel>Local: </S.AppointmentCardLabel>
-            <S.AppointmentCardInfo>{this.props.location}</S.AppointmentCardInfo>
-          </S.AppointmentCardLine>
-        </S.AppointmentCardBody>
-        <S.AppointmentCardFooter>
+      <Card>
+        <Card.Content
+          header={this.props.title}
+          meta={`${this.props.duration} min`}
+          description={this.props.description}
+          // location={this.props.location} PRECISA COLOCAR
+        />
+        <Card.Content extra>
           {this.props.patient ? (
-            <ATag
-              path={`/novo/${this.props.username}/${this.props.id}`}
-              text='Agendar'
-            />
+            <Fragment>
+              <Icon name="share square outline" />
+              <ATag
+                path={`/novo/${this.props.username}/${this.props.id}`}
+                text="Agendar"
+              />
+            </Fragment>
           ) : (
-            <ATag
-              path={`/le/${this.props.username}/evento/${this.props.id}`}
-              text='Editar'
-            />
+            <Fragment>
+              <Icon name="edit outline" />
+              <ATag
+                path={`/le/${this.props.username}/evento/${this.props.id}`}
+                text="Editar"
+              />
+            </Fragment>
           )}
-        </S.AppointmentCardFooter>
-      </S.AppointmentCard>
+        </Card.Content>
+      </Card>
     );
   }
 }

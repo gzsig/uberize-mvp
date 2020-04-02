@@ -1,58 +1,129 @@
-import React, { Component } from 'react';
-import * as S from './style';
-import * as G from '../../resources/globalStyle';
-import appContext from '../../context/AppContext';
+import React, { Component } from "react";
+import * as S from "./style";
+import * as G from "../../resources/globalStyle";
+import appContext from "../../context/AppContext";
+import { Button, Card, Image } from "semantic-ui-react";
 
 class GoogleAuth extends Component {
   handleLogInClick = () => {
-    window.location.assign(`${process.env.REACT_APP_BACKEND_URL}/auth/google`); 
+    window.location.assign(`${process.env.REACT_APP_BACKEND_URL}/auth/google`);
   };
 
   render() {
     return (
       <React.Fragment>
-        <G.BeigeCard>
-          <S.Welcome>Bem Vindo</S.Welcome>
-          <S.GoogleBtn onClick={this.handleLogInClick}>
-            <S.SvgIcon>
-              <svg width='25' height='37' viewBox='0 0 25 25'>
-                <g fill='none' fillRule='evenodd'>
-                  <path
-                    d='M20.66 12.693c0-.603-.054-1.182-.155-1.738H12.5v3.287h4.575a3.91 3.91 0 0 1-1.697 2.566v2.133h2.747c1.608-1.48 2.535-3.65 2.535-6.24z'
-                    fill='#4285F4'
-                  />
-                  <path
-                    d='M12.5 21c2.295 0 4.22-.76 5.625-2.06l-2.747-2.132c-.76.51-1.734.81-2.878.81-2.214 0-4.088-1.494-4.756-3.503h-2.84v2.202A8.498 8.498 0 0 0 12.5 21z'
-                    fill='#34A853'
-                  />
-                  <path
-                    d='M7.744 14.115c-.17-.51-.267-1.055-.267-1.615s.097-1.105.267-1.615V8.683h-2.84A8.488 8.488 0 0 0 4 12.5c0 1.372.328 2.67.904 3.817l2.84-2.202z'
-                    fill='#FBBC05'
-                  />
-                  <path
-                    d='M12.5 7.38c1.248 0 2.368.43 3.25 1.272l2.437-2.438C16.715 4.842 14.79 4 12.5 4a8.497 8.497 0 0 0-7.596 4.683l2.84 2.202c.668-2.01 2.542-3.504 4.756-3.504z'
-                    fill='#EA4335'
-                  />
-                </g>
-              </svg>
-            </S.SvgIcon>
-            <span className='button-label'>Login com Google</span>
-          </S.GoogleBtn>
-          <S.Footer>
-            Não tem gmail? Sem problemas,{' '}
-            <a
-              href='https://gmail.com'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              crie
-            </a>{' '}
-            um agora!
-          </S.Footer>
-        </G.BeigeCard>
+        <Card>
+          <Card.Content>
+            <Image
+              floated="right"
+              size="mini"
+              src={window.location.origin + "/google.png"}
+            />
+            <Card.Header>Bem vindo!</Card.Header>
+            <Card.Meta>Friends of Elliot</Card.Meta>
+            <Card.Description>
+              Não tem gmail? Sem problemas,{" "}
+              <a
+                href="https://gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                crie
+              </a>{" "}
+              um agora!
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <Button basic color="green" onClick={this.handleLogInClick}>
+              Login com Google
+            </Button>
+          </Card.Content>
+        </Card>
       </React.Fragment>
     );
   }
 }
 GoogleAuth.contextType = appContext;
 export default GoogleAuth;
+
+// import React from 'react'
+// // import { Button, Card, Image } from 'semantic-ui-react'
+
+// const CardExampleGroups = () => (
+//   <Card.Group>
+//     <Card>
+//       <Card.Content>
+//         <Image
+//           floated='right'
+//           size='mini'
+//           src='/images/avatar/large/steve.jpg'
+//         />
+//         <Card.Header>Steve Sanders</Card.Header>
+//         <Card.Meta>Friends of Elliot</Card.Meta>
+//         <Card.Description>
+//           Steve wants to add you to the group <strong>best friends</strong>
+//         </Card.Description>
+//       </Card.Content>
+//       <Card.Content extra>
+//         <div className='ui two buttons'>
+//           <Button basic color='green'>
+//             Approve
+//           </Button>
+//           <Button basic color='red'>
+//             Decline
+//           </Button>
+//         </div>
+//       </Card.Content>
+//     </Card>
+//     <Card>
+//       <Card.Content>
+//         <Image
+//           floated='right'
+//           size='mini'
+//           src='/images/avatar/large/molly.png'
+//         />
+//         <Card.Header>Molly Thomas</Card.Header>
+//         <Card.Meta>New User</Card.Meta>
+//         <Card.Description>
+//           Molly wants to add you to the group <strong>musicians</strong>
+//         </Card.Description>
+//       </Card.Content>
+//       <Card.Content extra>
+//         <div className='ui two buttons'>
+//           <Button basic color='green'>
+//             Approve
+//           </Button>
+//           <Button basic color='red'>
+//             Decline
+//           </Button>
+//         </div>
+//       </Card.Content>
+//     </Card>
+//     <Card>
+//       <Card.Content>
+//         <Image
+//           floated='right'
+//           size='mini'
+//           src='/images/avatar/large/jenny.jpg'
+//         />
+//         <Card.Header>Jenny Lawrence</Card.Header>
+//         <Card.Meta>New User</Card.Meta>
+//         <Card.Description>
+//           Jenny requested permission to view your contact details
+//         </Card.Description>
+//       </Card.Content>
+//       <Card.Content extra>
+//         <div className='ui two buttons'>
+//           <Button basic color='green'>
+//             Approve
+//           </Button>
+//           <Button basic color='red'>
+//             Decline
+//           </Button>
+//         </div>
+//       </Card.Content>
+//     </Card>
+//   </Card.Group>
+// )
+
+// export default CardExampleGroups
