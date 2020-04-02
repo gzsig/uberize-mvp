@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import Consumer from '../../context/AppConsumer';
-import * as G from '../../resources/globalStyle';
-import AppContext from '../../context/AppContext';
-import { Loader, AppointmentForm } from '../../components';
-import server from '../../resources/axios';
+import React, { Component } from "react";
+import Consumer from "../../context/AppConsumer";
+import AppContext from "../../context/AppContext";
+import { Loader, AppointmentForm } from "../../components";
+import server from "../../resources/axios";
+import { Container } from "semantic-ui-react";
 
 class EditAppointment extends Component {
   state = {
-    _id: '',
-    name: '',
-    description: '',
-    duration: '',
-    location: ''
+    _id: "",
+    name: "",
+    description: "",
+    duration: "",
+    location: ""
   };
 
   componentDidMount = async () => {
@@ -37,7 +37,7 @@ class EditAppointment extends Component {
     const calAppointment = this.state;
     console.log(calAppointment);
     server(window.localStorage.crpt)
-      .patch('/my/appointment/edit', {
+      .patch("/my/appointment/edit", {
         calAppointment,
         id: this.state._id
       })
@@ -72,7 +72,7 @@ class EditAppointment extends Component {
             return <Loader />;
           } else if (context.state.loggedIn === 2) {
             return (
-              <G.Wrapper>
+              <Container>
                 <AppointmentForm
                   name={this.state.name}
                   description={this.state.description}
@@ -82,7 +82,7 @@ class EditAppointment extends Component {
                   handleSave={this.handleSave}
                   handleDelete={this.handleDelete}
                 />
-              </G.Wrapper>
+              </Container>
             );
           }
         }}
