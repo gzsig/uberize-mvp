@@ -26,32 +26,21 @@ export default class Navbar extends Component {
         />
 
         <Menu.Menu position="right">
-        {this.context.state.given_name && (
-          <Dropdown item text="Menu">
-            <Dropdown.Menu>
-              {/* {this.context.state.given_name && ( */}
+          {this.context.state.given_name && (
+            <Dropdown item text="Menu">
+              <Dropdown.Menu>
                 <Link to={{ pathname: `/le/${this.context.state.username}` }}>
                   {" "}
                   <Dropdown.Item>
                     {this.context.state.given_name}
                   </Dropdown.Item>{" "}
                 </Link>
-              {/* )} */}
-              {/* {this.context.state.given_name && ( */}
-                <Link to="/le/calendario">
-                  {" "}
-                  <Dropdown.Item>Calendario</Dropdown.Item>
-                </Link>
-              {/* )} */}
-              {/* {this.context.state.given_name && ( */}
                 <Dropdown.Item onClick={this.context.logout}>
                   Sair
                 </Dropdown.Item>
-              {/* )} */}
-              {/* {this.context.state.given_name && <Dropdown.Item> <S.ThumbNail src={this.context.state.picture} /></Dropdown.Item> } */}
-            </Dropdown.Menu>
-          </Dropdown>
-            )}
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
           {!this.context.state.given_name && (
             <Menu.Item>
               <Button primary>Sign Up</Button>

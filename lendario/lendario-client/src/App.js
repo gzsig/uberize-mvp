@@ -5,7 +5,6 @@ import { Switch, Route } from "react-router-dom";
 import {
   Login,
   Onboarding,
-  CalendarView,
   Profile,
   NewAppointment,
   EditAppointment,
@@ -23,7 +22,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/le/onboarding" component={Onboarding} />
-        <Route exact path="/le/calendario" component={CalendarView} />
         <Route exact path="/le/:username" component={Profile} />
         <Route exact path="/le/:username/evento" component={NewAppointment} />
         <Route
