@@ -3,7 +3,7 @@ import Consumer from "../../context/AppConsumer";
 import AppContext from "../../context/AppContext";
 import { Loader, AppointmentForm } from "../../components";
 import server from "../../resources/axios";
-import { Container } from "semantic-ui-react";
+import { Container, Header, Icon } from "semantic-ui-react";
 
 class EditAppointment extends Component {
   state = {
@@ -73,6 +73,10 @@ class EditAppointment extends Component {
           } else if (context.state.loggedIn === 2) {
             return (
               <Container>
+                <Header as="h2">
+                  <Icon name="calendar alternate outline" />
+                  <Header.Content>Editar Horario</Header.Content>
+                </Header>
                 <AppointmentForm
                   name={this.state.name}
                   description={this.state.description}

@@ -4,7 +4,7 @@ import * as G from "../../resources/globalStyle";
 import AppContext from "../../context/AppContext";
 import { Loader, AppointmentForm } from "../../components";
 import server from "../../resources/axios";
-import { Container } from "semantic-ui-react";
+import { Container, Header, Icon } from "semantic-ui-react";
 
 class NewAppointment extends Component {
   state = {
@@ -59,6 +59,10 @@ class NewAppointment extends Component {
           } else if (context.state.loggedIn === 2) {
             return (
               <Container>
+                <Header as="h2">
+                  <Icon name="calendar alternate outline" />
+                  <Header.Content>Novo Horario</Header.Content>
+                </Header>
                 <AppointmentForm
                   handelInput={this.handelInput}
                   handleSave={this.handleSave}
