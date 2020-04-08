@@ -1,24 +1,54 @@
-import React, { Component } from 'react';
-import * as S from './style';
-import AppContext from '../../context/AppContext';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 
-class Navbar extends Component {
+import { Button, Dropdown, Menu } from "semantic-ui-react";
+
+export default class Navbar extends Component {
+  state = { activeItem: "home" };
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
   render() {
+    const { activeItem } = this.state;
+
     return (
-      <S.Nav>
-        <Link to='/'> <S.Title >Lendário</S.Title></Link>
-        <S.Items>
-          {this.context.state.given_name && <Link to={{pathname: `/le/${this.context.state.username}`}}> <S.Item>{this.context.state.given_name}</S.Item> </Link>}
-          {this.context.state.given_name && <Link to='/le/calendario'> <S.Item>Calendario</S.Item></Link> }
-          {this.context.state.given_name && <S.Item onClick={this.context.logout}>Sair</S.Item> }
-          {this.context.state.given_name && <S.Item> <S.ThumbNail src={this.context.state.picture} /></S.Item> }
-          
-        </S.Items>
-      </S.Nav>
-    )
+      <Menu size="small">
+        <Menu.Item
+          name="home"
+          active={activeItem === "home"}
+          onClick={this.handleItemClick}
+        />
+        <Menu.Item
+          name="messages"
+          active={activeItem === "messages"}
+          onClick={this.handleItemClick}
+        />
+
+        <Menu.Menu position="right">
+          {this.context.state.given_name && (
+            <Dropdown item text="Menu">
+              <Dropdown.Menu>
+                <Link to={{ pathname: `/le/${this.context.state.username}` }}>
+                  {" "}
+                  <Dropdown.Item>
+                    {this.context.state.given_name}
+                  </Dropdown.Item>{" "}
+                </Link>
+                <Dropdown.Item onClick={this.context.logout}>
+                  Sair
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
+          {!this.context.state.given_name && (
+            <Menu.Item>
+              <Button primary>Sign Up</Button>
+            </Menu.Item>
+          )}
+        </Menu.Menu>
+      </Menu>
+    );
   }
 }
-
-Navbar.contextType = AppContext
-export default Navbar
+Navbar.contextType = AppContext;
